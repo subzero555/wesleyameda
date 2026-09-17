@@ -1,51 +1,81 @@
 # Deploy
 
-    rsync -avz -e "ssh -p 1980" --delete \
-      index.html favicon.svg robots.txt sitemap.xml work/ assets/ \
-      user@SERVER:/var/www/wesley/
+The site runs on the `srv1` VPS as a PM2 process named `portfolio`, serving
+`~/portfolio` on `127.0.0.1:3005`. That box has **no nginx and no `/var/www`**,
+and UFW allows port 22 only, so nothing is reachable from outside except
+through the Cloudflare Tunnel. This is the same pattern KPI, EduLedger and
+Hub Lab already use.
 
-nginx:
+## Push an update
 
-    server {
-        listen 80;
-        server_name wesley.kenyaproductindex.co.ke;
-        root /var/www/wesley;
-        index index.html;
+From this directory:
 
-        # /work/eduledger resolves to /work/eduledger.html
-        location / { try_files $uri $uri.html $uri/ =404; }
+    tar -czf - index.html favicon.svg robots.txt sitemap.xml serve.js work assets \
+      | ssh wesley@srv1 'tar -xzf - -C ~/portfolio'
+    ssh wesley@srv1 'pm2 restart portfolio'
 
-        location /assets/ {
-            expires 30d;
-            add_header Cache-Control "public, immutable";
-        }
-        location = /index.html { add_header Cache-Control "no-cache"; }
+Only the files named above go up. `CLAUDE.md`, `deploy.md` and `.git` stay off
+the server, and `serve.js` refuses to serve them even if they get there.
 
-        gzip on;
-        gzip_types text/html text/css application/javascript image/svg+xml;
-    }
+`rsync` is not installed in Git Bash on the dev machine, which is why this is
+tar over ssh rather than the rsync one-liner.
 
-    sudo nginx -t && sudo systemctl reload nginx
-    sudo certbot --nginx -d wesley.kenyaproductindex.co.ke
+## First-time setup, already done
 
-## robots.txt
+    ssh wesley@srv1 'mkdir -p ~/portfolio'
+    # transfer as above
+    ssh wesley@srv1 'cd ~/portfolio && PORT=3005 pm2 start serve.js --name portfolio --time && pm2 save'
 
-`robots.txt` and `sitemap.xml` are now in the repo and go up with the rsync
-above. The server may still have an older `/robots.txt` sitting outside
-`/var/www/wesley/`, or one served by a catch-all. Check what actually answers:
+`pm2 save` plus the enabled `pm2-wesley` systemd unit means it comes back
+after a reboot. Ports 3000, 3002 and 4000 on that box are taken by
+fee-ledger-web, kpi-web and fee-ledger-api, hence 3005.
 
+## The one step that cannot be scripted
+
+DNS for `wesley.kenyaproductindex.co.ke` is still an **A record pointing at
+`64.204.254.53`**, a shared host that returns 404 to everything. Until that
+changes the site is only reachable on the server itself.
+
+Pointing the A record at the VPS IP will **not** work: 80 and 443 are closed
+inbound on that box. It has to become a tunnel route, added by hand:
+
+1. one.dash.cloudflare.com, Networks, Tunnels, pick the tunnel serving this
+   zone, Public Hostname, Add a published application route.
+2. Subdomain `wesley`, domain `kenyaproductindex.co.ke`.
+3. Service type **HTTP**, URL `http://localhost:3005`. The protocol prefix is
+   required; a bare `localhost:3005` is rejected.
+4. Delete the existing `wesley` A record first, or the dashboard will refuse
+   with "DNS record already exists". Cloudflare creates the CNAME itself.
+
+The tunnel is **dashboard-managed**, so `/etc/cloudflared/config.yml` on the
+server is ignored. Editing it does nothing.
+
+Cloudflare terminates TLS, so there is no certbot and no certificate to renew.
+
+## Verify after the route exists
+
+    curl -sI https://wesley.kenyaproductindex.co.ke/ | head -1
     curl -s https://wesley.kenyaproductindex.co.ke/robots.txt
 
-If that returns a disallow rather than the repo copy, nginx is serving it from
-somewhere else and Google cannot index the portfolio.
+Note that Bot Fight Mode on this zone returns 403 to some automated clients
+while real browsers get 200, so a 403 from a script is not proof of a problem.
+
+## serve.js
+
+A dependency-free static server, about a hundred lines. It exists because the
+VPS has no nginx. It reproduces the `try_files $uri $uri.html $uri/index.html`
+behaviour, so `/work/eduledger` serves `work/eduledger.html` and matches the
+extensionless canonical URLs in the pages. Both spellings resolve; the
+canonical tag decides which one Google indexes.
+
+It serves only `index.html`, `favicon.svg`, `robots.txt`, `sitemap.xml`,
+`work/` and `assets/`. Anything else is a 404, including dot directories, so a
+file added to the repo later is private until it is added to that list.
+Assets get a 30 day immutable cache, HTML gets `no-cache`.
 
 ## Canonical host
 
-Every canonical and `og:url` in the pages names
+Every canonical and `og:url` names
 `https://wesley.kenyaproductindex.co.ke`. If the site moves to its own domain,
-those strings, `robots.txt` and `sitemap.xml` all have to change together, and
-the old host should 301 to the new one rather than serve both.
-
-Pages are linked as `.html` but the canonical is extensionless, which matches
-the `try_files` rule above. Both URLs resolve, and the canonical tag is what
-decides which one gets indexed.
+those strings plus `robots.txt` and `sitemap.xml` all change together, and the
+old host should 301 to the new one rather than both serving.
