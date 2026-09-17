@@ -104,28 +104,142 @@ footer{display:flex;justify-content:space-between;padding:2rem 0;font-size:.8rem
   .rv{opacity:1;transform:none}
 }
 
-/* ---------- nav, shared ---------- */
-nav{position:fixed;top:0;left:0;right:0;z-index:600;display:flex;align-items:center;justify-content:space-between;padding:1.6rem var(--gut);mix-blend-mode:difference;color:#fff}
-nav .sig{font-weight:600;font-size:1.02rem;letter-spacing:-.02em}
-nav .sig i{font-style:normal;font-weight:400;color:#9c9c9c}
-nav ul.navlinks{display:flex;gap:1.6rem;list-style:none}
-nav ul.navlinks a{font-size:.9rem;font-weight:450;position:relative;padding-bottom:2px;white-space:nowrap}
-nav ul.navlinks a::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
-nav ul.navlinks a:hover::after{transform:scaleX(1);transform-origin:left}
-nav #mtoggle{display:none;background:none;border:0;color:inherit;font:inherit;font-size:.92rem;font-weight:450;cursor:pointer;padding:.4rem 0;letter-spacing:-.01em}
+/* ---------- nav ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:600;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.5rem var(--gut);color:var(--ink);
+  background:transparent;border-bottom:1px solid transparent;
+  transition:background .45s var(--ease),border-color .45s var(--ease),padding .45s var(--ease);
+}
+nav.solid{
+  background:rgba(239,237,232,.86);
+  -webkit-backdrop-filter:saturate(1.5) blur(16px);
+  backdrop-filter:saturate(1.5) blur(16px);
+  border-bottom-color:var(--line);
+  
+}
+nav .sig{font-weight:600;font-size:1.02rem;letter-spacing:-.02em;z-index:2}
+nav .sig i{font-style:normal;font-weight:400;color:var(--ash)}
 
-#mmenu{position:fixed;inset:0;z-index:590;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:6rem var(--gut) 2rem;overflow-y:auto}
+nav ul.navlinks{display:flex;align-items:center;gap:.35rem;list-style:none}
+.navitem{position:relative}
+.navtop{
+  display:inline-flex;align-items:center;gap:.34rem;
+  background:none;border:0;color:inherit;font:inherit;font-size:.9rem;font-weight:450;
+  letter-spacing:-.01em;cursor:pointer;padding:.5rem .7rem;border-radius:100px;
+  transition:background .3s var(--ease),color .3s var(--ease);
+}
+.navtop:hover,.navitem.open .navtop{background:rgba(22,23,26,.07)}
+.navtop i{
+  width:5px;height:5px;border-right:1.4px solid currentColor;border-bottom:1.4px solid currentColor;
+  transform:rotate(45deg) translateY(-1px);opacity:.5;
+  transition:transform .35s var(--ease),opacity .3s var(--ease);
+}
+.navitem.open .navtop i{transform:rotate(-135deg) translateY(-1px);opacity:.9}
+
+.navcta{
+  display:inline-block;margin-left:.5rem;padding:.55rem 1.15rem;border-radius:100px;
+  background:var(--ink);color:var(--paper);font-size:.9rem;font-weight:500;letter-spacing:-.01em;
+  transition:background .3s var(--ease),transform .3s var(--ease);
+}
+.navcta:hover{background:var(--blue);transform:translateY(-1px)}
+
+/* ---------- mega panel ---------- */
+#mega{
+  position:fixed;left:0;right:0;top:var(--navh,72px);z-index:585;
+  background:var(--paper);border-bottom:1px solid transparent;
+  height:0;overflow:hidden;opacity:0;pointer-events:none;
+  transition:height .38s var(--ease),opacity .22s var(--ease),border-color .3s var(--ease);
+}
+#mega[hidden]{display:none}
+#mega.show{opacity:1;pointer-events:auto;border-bottom-color:var(--line)}
+#megabody{position:relative}
+.pane{
+  position:absolute;top:0;left:0;right:0;
+  max-width:1440px;margin:0 auto;
+  padding:clamp(2rem,4vw,3.2rem) var(--gut) clamp(2.2rem,4.5vw,3.6rem);
+  display:grid;grid-template-columns:minmax(240px,1fr) 2fr;gap:clamp(2rem,6vw,5rem);
+  opacity:0;pointer-events:none;transition:opacity .26s var(--ease);
+}
+.pane.on{opacity:1;pointer-events:auto}
+.pintro{max-width:30ch}
+.phead{font-size:clamp(1.15rem,2vw,1.6rem);font-weight:600;letter-spacing:-.03em;line-height:1.14}
+.ppill{
+  display:inline-block;margin-top:1.3rem;padding:.55rem 1.15rem;border-radius:100px;
+  background:rgba(22,23,26,.06);font-size:.88rem;font-weight:450;
+  transition:background .3s var(--ease),color .3s var(--ease);
+}
+.ppill:hover{background:var(--ink);color:var(--paper)}
+.pcols{display:grid;grid-template-columns:repeat(2,1fr);gap:0}
+.pcol{display:flex;flex-direction:column;padding-left:clamp(1.4rem,3vw,2.6rem);border-left:1px solid var(--line)}
+.pcol a{font-size:1rem;font-weight:450;letter-spacing:-.015em;padding:.5rem 0;transition:color .25s var(--ease),padding-left .35s var(--ease)}
+.pcol a:hover{color:var(--blue);padding-left:.3rem}
+
+
+@media(max-width:1100px){ #mega{display:none!important} }
+
+/* the page behind dims a little, so the bar takes focus. it starts below the
+   bar, never overlaps it, and never takes pointer events, so nothing under it
+   shifts or becomes unclickable. */
+#megashade{
+  position:fixed;left:0;right:0;top:var(--navh,72px);bottom:0;z-index:580;
+  background:rgba(22,23,26,.10);opacity:0;pointer-events:none;
+  transition:opacity .34s var(--ease);
+}
+#megashade[hidden]{display:none}
+#megashade.show{opacity:1}
+/* while a panel is open the bar sits on opaque paper, so the blur buys nothing
+   and costs a full recomposite of the page behind it on every frame */
+nav.menuopen{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--paper)}
+#mega.show{will-change:height}
+@media(max-width:1100px){ #megashade{display:none!important} }
+@media(prefers-reduced-motion:reduce){ #megashade{transition:none} }
+
+@media(prefers-reduced-motion:reduce){ #mega,.pane{transition:none} }
+
+nav #mtoggle{
+  display:none;background:none;border:0;color:inherit;font:inherit;
+  font-size:.92rem;font-weight:450;cursor:pointer;padding:.5rem 0;letter-spacing:-.01em;z-index:2;
+}
+
+#mmenu{
+  position:fixed;inset:0;z-index:590;background:var(--ink);color:var(--paper);
+  display:flex;flex-direction:column;justify-content:center;gap:1.5rem;
+  padding:6rem var(--gut) 2.5rem;overflow-y:auto;overscroll-behavior:contain;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s var(--ease);
+}
+#mmenu.show{opacity:1;pointer-events:auto}
+/* each block lifts in just behind the one above it */
+#mmenu .mgroup,#mmenu .mfoot{
+  opacity:0;transform:translateY(14px);
+  transition:opacity .4s var(--ease),transform .46s var(--ease);
+}
+#mmenu.show .mgroup,#mmenu.show .mfoot{opacity:1;transform:none}
+#mmenu.show .mgroup:nth-child(1){transition-delay:.05s}
+#mmenu.show .mgroup:nth-child(2){transition-delay:.10s}
+#mmenu.show .mgroup:nth-child(3){transition-delay:.15s}
+#mmenu.show .mgroup:nth-child(4){transition-delay:.20s}
+#mmenu.show .mfoot{transition-delay:.25s}
+@media(prefers-reduced-motion:reduce){
+  #mmenu,#mmenu .mgroup,#mmenu .mfoot{transition:none;transform:none}
+}
 #mmenu[hidden]{display:none}
-#mmenu ul{list-style:none}
-#mmenu li{overflow:hidden}
-#mmenu a{display:block;font-size:clamp(2rem,10vw,3.2rem);font-weight:500;letter-spacing:-.035em;line-height:1.16;padding:.12em 0}
-#mmenu .mfoot{margin-top:2.5rem;padding-top:1.4rem;border-top:1px solid rgba(239,237,232,.18);display:flex;flex-direction:column;gap:.5rem}
+#mmenu .mgroup{display:flex;flex-direction:column}
+#mmenu .mlabel{font-size:.76rem;color:rgba(239,237,232,.42);margin-bottom:.45rem}
+#mmenu a{font-size:clamp(1.15rem,5.2vw,1.7rem);font-weight:500;letter-spacing:-.03em;line-height:1.5}
+#mmenu .mcta{color:var(--blue)}
+#mmenu .mfoot{margin-top:.5rem;padding-top:1.2rem;border-top:1px solid rgba(239,237,232,.18);display:flex;flex-direction:column;gap:.4rem}
 #mmenu .mfoot a{font-size:.95rem;font-weight:400;color:rgba(239,237,232,.7);letter-spacing:0}
 body.menu-open{overflow:hidden}
 
 @media(max-width:1100px){
   nav ul.navlinks{display:none}
-  nav #mtoggle{display:block}
+  
+}
+@media(prefers-reduced-motion:reduce){
+  nav,.panel,.navtop,.navtop i,.navcta{transition:none}
 }
 
 /* ---------- phone ---------- */
@@ -150,37 +264,174 @@ body.menu-open{overflow:hidden}
 </head>
 <body>
 
-<nav>
+<nav id="nav">
   <a href="../index.html" class="sig">Wesley Ameda</a>
-  <button id="mtoggle" aria-expanded="false" aria-controls="mmenu">Menu</button>
+
   <ul class="navlinks">
-      <li><a href="index.html">Work</a></li>
-      <li><a href="../hub.html">The hub</a></li>
-      <li><a href="../gallery.html">Gallery</a></li>
-      <li><a href="../design.html">Design</a></li>
-      <li><a href="../marketing.html">Marketing</a></li>
-      <li><a href="../hobbies.html">Hobbies</a></li>
-      <li><a href="../access.html">Access</a></li>
-      <li><a href="../index.html#contact">Contact</a></li>
+    <li class="navitem" data-menu="work">
+      <button class="navtop" aria-expanded="false" aria-controls="p-work">Work<i></i></button>
+    </li>
+    <li class="navitem" data-menu="hub">
+      <button class="navtop" aria-expanded="false" aria-controls="p-hub">The hub<i></i></button>
+    </li>
+    <li class="navitem" data-menu="svc">
+      <button class="navtop" aria-expanded="false" aria-controls="p-svc">Services<i></i></button>
+    </li>
+    <li class="navitem"><a class="navtop" href="../index.html#contact">Contact</a></li>
+    <li class="navitem"><a class="navcta" href="../access.html">Access</a></li>
   </ul>
+
+  <button id="mtoggle" aria-expanded="false" aria-controls="mmenu">Menu</button>
 </nav>
 
+<div id="mega" hidden>
+  <div id="megabody">
+    <div class="pane" data-pane="work" id="p-work">
+      <div class="pintro">
+        <p class="phead">Systems that move money and hold records</p>
+        <a class="ppill" href="index.html">All work</a>
+      </div>
+      <div class="pcols">
+        <div class="pcol">
+          <a href="eduledger.html">EduLedger</a>
+          <a href="kenya-product-index.html">Kenya Product Index</a>
+          <a href="hub-lab.html">Hub Lab</a>
+          <a href="sote.html">Sote</a>
+        </div>
+        <div class="pcol">
+          <a href="squishy.html">Squishy</a>
+          <a href="shambadoc.html">ShambaDoc</a>
+          <a href="cover-connect.html">Cover Connect</a>
+        </div>
+      </div>
+    </div>
+    <div class="pane" data-pane="hub" id="p-hub">
+      <div class="pintro">
+        <p class="phead">Where the teaching half of the practice happens</p>
+        <a class="ppill" href="../hub.html">The hub</a>
+      </div>
+      <div class="pcols">
+        <div class="pcol">
+          <a href="../hub.html">The hub</a>
+          <a href="../gallery.html">Gallery</a>
+        </div>
+        <div class="pcol">
+          <a href="../index.html#teaching">Beyond Form 4</a>
+          <a href="../access.html">The developer community</a>
+        </div>
+      </div>
+    </div>
+    <div class="pane" data-pane="svc" id="p-svc">
+      <div class="pintro">
+        <p class="phead">What I build, and what I teach</p>
+        <a class="ppill" href="../access.html">Access and availability</a>
+      </div>
+      <div class="pcols">
+        <div class="pcol">
+          <a href="../design.html">Design and production</a>
+          <a href="../marketing.html">Marketing and search</a>
+        </div>
+        <div class="pcol">
+          <a href="../hobbies.html">Away from the screen</a>
+          <a href="../access.html">Training</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="megashade" hidden></div>
+
+  <div class="mega" id="p-work" hidden>
+    <div class="mega-in">
+      <div class="pintro">
+        <p class="phead">Systems that move money and hold records</p>
+        <a class="ppill" href="index.html">All work</a>
+      </div>
+      <div class="pcols">
+          <div class="pcol">
+            <a href="eduledger.html">EduLedger</a>
+            <a href="kenya-product-index.html">Kenya Product Index</a>
+            <a href="hub-lab.html">Hub Lab</a>
+            <a href="sote.html">Sote</a>
+          </div>
+          <div class="pcol">
+            <a href="squishy.html">Squishy</a>
+            <a href="shambadoc.html">ShambaDoc</a>
+            <a href="cover-connect.html">Cover Connect</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="mega" id="p-hub" hidden>
+    <div class="mega-in">
+      <div class="pintro">
+        <p class="phead">Where the teaching half of the practice happens</p>
+        <a class="ppill" href="../hub.html">The hub</a>
+      </div>
+      <div class="pcols">
+          <div class="pcol">
+            <a href="../hub.html">The hub</a>
+            <a href="../gallery.html">Gallery</a>
+          </div>
+          <div class="pcol">
+            <a href="../index.html#teaching">Beyond Form 4</a>
+            <a href="../access.html">The developer community</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="mega" id="p-svc" hidden>
+    <div class="mega-in">
+      <div class="pintro">
+        <p class="phead">What I build, and what I teach</p>
+        <a class="ppill" href="../access.html">Access and availability</a>
+      </div>
+      <div class="pcols">
+          <div class="pcol">
+            <a href="../design.html">Design and production</a>
+            <a href="../marketing.html">Marketing and search</a>
+          </div>
+          <div class="pcol">
+            <a href="../hobbies.html">Away from the screen</a>
+            <a href="../access.html">Training</a>
+          </div>
+      </div>
+    </div>
+  </div>
+
 <div id="mmenu" hidden>
-  <ul>
-    <li><a href="index.html">Work</a></li>
-    <li><a href="../hub.html">The hub</a></li>
-    <li><a href="../gallery.html">Gallery</a></li>
-    <li><a href="../design.html">Design</a></li>
-    <li><a href="../marketing.html">Marketing</a></li>
-    <li><a href="../hobbies.html">Hobbies</a></li>
-    <li><a href="../access.html">Access</a></li>
-    <li><a href="../index.html#contact">Contact</a></li>
-  </ul>
+  <div class="mgroup">
+    <span class="mlabel">Work</span>
+    <a href="index.html">All work</a>
+    <a href="eduledger.html">EduLedger</a>
+    <a href="kenya-product-index.html">Kenya Product Index</a>
+    <a href="hub-lab.html">Hub Lab</a>
+    <a href="sote.html">Sote</a>
+    <a href="squishy.html">Squishy</a>
+    <a href="shambadoc.html">ShambaDoc</a>
+    <a href="cover-connect.html">Cover Connect</a>
+  </div>
+  <div class="mgroup">
+    <span class="mlabel">The hub</span>
+    <a href="../hub.html">The hub</a>
+    <a href="../gallery.html">Gallery</a>
+  </div>
+  <div class="mgroup">
+    <span class="mlabel">Services</span>
+    <a href="../design.html">Design and production</a>
+    <a href="../marketing.html">Marketing and search</a>
+    <a href="../hobbies.html">Hobbies</a>
+  </div>
+  <div class="mgroup">
+    <a class="mcta" href="../access.html">Access</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
   <div class="mfoot">
     <a href="mailto:wesley@kenyaproductindex.co.ke">wesley@kenyaproductindex.co.ke</a>
     <a href="tel:+254793518514">0793 518 514</a>
   </div>
 </div>
+
 <div class="shell">
   <header class="chero">
     <h1 class="display">
@@ -303,17 +554,125 @@ body.menu-open{overflow:hidden}
     });
   }
 
+
+
+
+  /* ---------- mega menu ---------- */
+  var navEl  = document.getElementById('nav');
+  var mega   = document.getElementById('mega');
+  var shade  = document.getElementById('megashade');
+  var panes  = Array.prototype.slice.call(document.querySelectorAll('.pane'));
+  var items  = Array.prototype.slice.call(document.querySelectorAll('.navitem[data-menu]'));
+  var openId = null, closeT = null;
+
+  function navH(){ if (navEl) document.documentElement.style.setProperty('--navh', navEl.offsetHeight + 'px'); }
+  function sync(){ if (navEl) navEl.classList.toggle('solid', scrollY > 8 || openId !== null); }
+  function paneFor(id){ return panes.filter(function(p){ return p.dataset.pane === id; })[0]; }
+
+  function show(id){
+    clearTimeout(closeT);
+    if (openId === id) return;
+    var pane = paneFor(id);
+    if (!pane) return;
+    navH();
+
+    var first = openId === null;
+    if (first){ mega.hidden = false; if (shade) shade.hidden = false; }
+    if (navEl) navEl.classList.add('menuopen');
+
+    // one container, cross-fade the contents, animate the height
+    panes.forEach(function(p){ p.classList.toggle('on', p === pane); });
+    items.forEach(function(i){
+      var on = i.dataset.menu === id;
+      i.classList.toggle('open', on);
+      var b = i.querySelector('button'); if (b) b.setAttribute('aria-expanded', on ? 'true' : 'false');
+    });
+
+    var h = pane.offsetHeight;
+    if (first){
+      // open from zero on the next frame so the height transition runs
+      requestAnimationFrame(function(){
+        mega.classList.add('show');
+        if (shade) shade.classList.add('show');
+        mega.style.height = h + 'px';
+      });
+    } else {
+      mega.style.height = h + 'px';
+    }
+    openId = id;
+    sync();
+  }
+
+  function shut(){
+    if (openId === null) return;
+    openId = null;
+    mega.style.height = '0px';
+    mega.classList.remove('show');
+    if (shade) shade.classList.remove('show');
+    panes.forEach(function(p){ p.classList.remove('on'); });
+    items.forEach(function(i){
+      i.classList.remove('open');
+      var b = i.querySelector('button'); if (b) b.setAttribute('aria-expanded','false');
+    });
+    setTimeout(function(){
+      if (openId === null){
+        mega.hidden = true;
+        if (shade) shade.hidden = true;
+        if (navEl) navEl.classList.remove('menuopen');
+        mega.style.willChange = '';
+      }
+    }, 420);
+    sync();
+  }
+
+  function later(){ clearTimeout(closeT); closeT = setTimeout(shut, 160); }
+
+  items.forEach(function(item){
+    var id = item.dataset.menu;
+    item.addEventListener('mouseenter', function(){ show(id); });
+    item.addEventListener('mouseleave', later);
+    var btn = item.querySelector('button');
+    if (btn) btn.addEventListener('click', function(e){ e.stopPropagation(); openId === id ? shut() : show(id); });
+  });
+  // the whole bar is one hover surface, so crossing a plain link does not tear the panel down
+  if (navEl){
+    navEl.addEventListener('mouseleave', later);
+    navEl.addEventListener('mouseenter', function(){ clearTimeout(closeT); });
+  }
+  if (mega){
+    mega.addEventListener('mouseenter', function(){ clearTimeout(closeT); });
+    mega.addEventListener('mouseleave', later);
+  }
+  addEventListener('keydown', function(e){ if (e.key === 'Escape') shut(); });
+  addEventListener('scroll', function(){ sync(); if (openId) shut(); }, { passive:true });
+  addEventListener('resize', function(){ navH(); if (openId) shut(); });
+  navH(); sync();
+
+
+
   /* ---------- mobile menu ---------- */
   var mt = document.getElementById('mtoggle');
   var mm = document.getElementById('mmenu');
   if (mt && mm){
+    var menuT = null;
     var setMenu = function(open){
-      mm.hidden = !open;
+      clearTimeout(menuT);
       mt.setAttribute('aria-expanded', open ? 'true' : 'false');
       mt.textContent = open ? 'Close' : 'Menu';
-      document.body.classList.toggle('menu-open', open);
+      if (open){
+        mm.hidden = false;
+        // the panel is fixed, so locking the body changes nothing about layout
+        document.body.classList.add('menu-open');
+        requestAnimationFrame(function(){ mm.classList.add('show'); });
+      } else {
+        mm.classList.remove('show');
+        document.body.classList.remove('menu-open');
+        menuT = setTimeout(function(){
+          if (!mm.classList.contains('show')) mm.hidden = true;
+        }, 480);
+      }
     };
-    mt.addEventListener('click', function(){ setMenu(mm.hidden); });
+    mt.addEventListener('click', function(e){ e.stopPropagation(); setMenu(mm.hidden); });
     mm.addEventListener('click', function(e){ if (e.target.tagName === 'A') setMenu(false); });
     addEventListener('keydown', function(e){ if (e.key === 'Escape' && !mm.hidden) setMenu(false); });
     addEventListener('resize', function(){ if (innerWidth > 1100 && !mm.hidden) setMenu(false); });

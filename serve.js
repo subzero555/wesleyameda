@@ -92,6 +92,27 @@ const server = http.createServer((req, res) => {
   const ext = path.extname(file).toLowerCase();
   const stat = fs.statSync(file);
 
+  // HTML carrying the country placeholder is rendered per request, so the
+  // greeting can open in a language the visitor actually speaks. Cloudflare
+  // sets CF-IPCountry on the way through the tunnel; without it the page
+  // falls back to time zone and browser language on the client.
+  if (ext === '.html') {
+    let body = fs.readFileSync(file, 'utf8');
+    if (body.includes('__CF_COUNTRY__')) {
+      const raw = String(req.headers['cf-ipcountry'] || '').toUpperCase();
+      const cc = /^[A-Z]{2}$/.test(raw) && raw !== 'XX' && raw !== 'T1' ? raw : '';
+      body = body.split('__CF_COUNTRY__').join(cc);
+      res.writeHead(200, {
+        'Content-Type': TYPES[ext],
+        'Content-Length': Buffer.byteLength(body),
+        'Cache-Control': 'no-cache',
+        'X-Content-Type-Options': 'nosniff',
+        'Vary': 'CF-IPCountry',
+      });
+      return res.end(req.method === 'HEAD' ? undefined : body);
+    }
+  }
+
   res.writeHead(200, {
     'Content-Type': TYPES[ext] || 'application/octet-stream',
     'Content-Length': stat.size,
