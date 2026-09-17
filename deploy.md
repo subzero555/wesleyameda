@@ -14,11 +14,13 @@ From this directory:
       | ssh wesley@srv1 'tar -xzf - -C ~/portfolio'
     ssh wesley@srv1 'pm2 restart portfolio'
 
-Only the files named above go up. `CLAUDE.md`, `deploy.md` and `.git` stay off
+git archive sends exactly the tracked files, so the 241 MB of original
+photographs in .gitignore never touch the server. `CLAUDE.md`, `deploy.md` and `.git` stay off
 the server, and `serve.js` refuses to serve them even if they get there.
 
-`rsync` is not installed in Git Bash on the dev machine, which is why this is
-tar over ssh rather than the rsync one-liner.
+ is not installed in Git Bash on the dev machine, which is why this is
+tar over ssh. Using git archive rather than a file list means a new page cannot
+be forgotten at deploy time.
 
 ## First-time setup, already done
 
