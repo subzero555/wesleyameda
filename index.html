@@ -117,6 +117,10 @@ nav a:hover::after{transform:scaleX(1);transform-origin:left}
 .work{padding-bottom:clamp(5rem,10vw,9rem)}
 .work-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:1.2rem;border-bottom:1px solid var(--line)}
 .work-head .meta{font-size:.82rem}
+.work-head .all{position:relative;padding-bottom:2px;transition:color .4s var(--ease)}
+.work-head .all::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.work-head .all:hover{color:var(--blue)}
+.work-head .all:hover::after{transform:scaleX(1);transform-origin:left}
 .row{
   display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;
   padding:clamp(1.6rem,3.4vw,2.8rem) 0;border-bottom:1px solid var(--line);
@@ -225,7 +229,7 @@ footer{display:flex;justify-content:space-between;padding:4rem 0 2rem;font-size:
 <nav>
   <a href="/" class="sig">Wesley Ameda <i>, Bondo</i></a>
   <ul>
-    <li><a href="#work">Work</a></li>
+    <li><a href="work/index.html">Work</a></li>
     <li><a href="#teaching">Teaching</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -263,7 +267,7 @@ footer{display:flex;justify-content:space-between;padding:4rem 0 2rem;font-size:
   <section class="work" id="work">
     <div class="work-head">
       <h2 class="h3">Selected work</h2>
-      <span class="meta">2023 to now</span>
+      <a class="meta all" href="work/index.html">All work</a>
     </div>
 
     <a class="row" href="work/eduledger.html" data-peek="assets/work-eduledger.jpg">
@@ -281,20 +285,25 @@ footer{display:flex;justify-content:space-between;padding:4rem 0 2rem;font-size:
       <span class="rr"><span>Learning platform</span><span class="live">Live</span></span>
     </a>
 
-    <div class="row nolink">
+    <a class="row" href="work/sote.html">
       <span class="rt">Sote</span>
-      <span class="rr"><span>Neighbourhood marketplace</span><span>In build</span></span>
-    </div>
+      <span class="rr"><span>Neighbourhood marketplace</span><span class="live">Deployed</span></span>
+    </a>
 
-    <div class="row nolink">
+    <a class="row" href="work/squishy.html">
+      <span class="rt">Squishy</span>
+      <span class="rr"><span>WiFi instrumentation</span><span>Phase zero</span></span>
+    </a>
+
+    <a class="row" href="work/shambadoc.html">
+      <span class="rt">ShambaDoc</span>
+      <span class="rr"><span>Crop disease diagnosis</span><span>Challenge build</span></span>
+    </a>
+
+    <a class="row" href="work/cover-connect.html">
       <span class="rt">Cover Connect</span>
-      <span class="rr"><span>Insurance onboarding</span><span>In build</span></span>
-    </div>
-
-    <div class="row nolink">
-      <span class="rt">AgroMind</span>
-      <span class="rr"><span>Climate intelligence</span><span>In build</span></span>
-    </div>
+      <span class="rr"><span>Insurance onboarding</span><span>Prototype</span></span>
+    </a>
   </section>
 
 </main>

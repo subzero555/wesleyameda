@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kenya Product Index, a project by John Wesley Ameda</title>
-<meta name="description" content="A national index of Kenyan brands, ranked by a score no brand can buy.">
-<link rel="canonical" href="https://wesley.kenyaproductindex.co.ke/work/kenya-product-index">
+<title>ShambaDoc, a project by John Wesley Ameda</title>
+<meta name="description" content="Crop disease diagnosis that runs on the phone, in Kiswahili, with no connection required.">
+<link rel="canonical" href="https://wesley.kenyaproductindex.co.ke/work/shambadoc">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="John Wesley Ameda">
-<meta property="og:title" content="Kenya Product Index, a project by John Wesley Ameda">
-<meta property="og:description" content="A national index of Kenyan brands, ranked by a score no brand can buy.">
-<meta property="og:url" content="https://wesley.kenyaproductindex.co.ke/work/kenya-product-index">
+<meta property="og:title" content="ShambaDoc, a project by John Wesley Ameda">
+<meta property="og:description" content="Crop disease diagnosis that runs on the phone, in Kiswahili, with no connection required.">
+<meta property="og:url" content="https://wesley.kenyaproductindex.co.ke/work/shambadoc">
 <meta property="og:image" content="https://wesley.kenyaproductindex.co.ke/assets/portrait-hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#EFEDE8">
@@ -116,60 +116,51 @@ footer{display:flex;justify-content:space-between;padding:2rem 0;font-size:.8rem
   <a href="../index.html" class="sig">Wesley Ameda</a>
   <a href="index.html" class="back">All work</a>
 </nav>
-
 <div class="shell">
   <header class="chero">
     <h1 class="display">
-      <span class="ln"><span>Kenya Product</span></span>
-      <span class="ln"><span>Index</span></span>
+      <span class="ln"><span>ShambaDoc</span></span>
     </h1>
-    <p class="tagline">A national index of Kenyan brands, ranked by a score no brand can buy.</p>
+    <p class="tagline">Crop disease diagnosis that runs on the phone, in Kiswahili, with no connection required.</p>
 
     <dl class="cmeta">
-      <div><dt>Role</dt><dd>Design, development, deployment</dd></div>
-      <div><dt>Company</dt><dd>Bitroot</dd></div>
-      <div><dt>Year</dt><dd>2025 to now</dd></div>
-      <div><dt>Status</dt><dd><a href="https://kenyaproductindex.co.ke" rel="noopener">kenyaproductindex.co.ke</a></dd></div>
+      <div><dt>Role</dt><dd>Built with Willis Otieno</dd></div>
+      <div><dt>Platform</dt><dd>Android and iOS, Flutter</dd></div>
+      <div><dt>Year</dt><dd>2026</dd></div>
+      <div><dt>Context</dt><dd>Campus Spark Innovation Challenge</dd></div>
     </dl>
   </header>
-</div>
-
-<figure class="plate tall rv">
-  <img src="../assets/work-kenya-product-index.jpg" alt="Kenya Product Index rankings page">
-</figure>
-
-<div class="shell">
 
   <section class="sec">
     <div class="sec-grid">
       <h2 class="h2 rv">The problem</h2>
       <div class="rv">
-        <p class="body">Ask which bank in Kenya actually treats people well, or which insurer pays out, and there is nothing to look up. What exists is a Facebook thread, a friend with an opinion, and a page of search results written by the companies being asked about. Everyone is deciding on anecdote.</p>
-        <p class="body">The review sites that do exist mostly average stars, which fails in two directions at once. A brand with four ratings sits level with a brand that has four hundred, and the loudest customer counts for as much as the most careful one. Then the ranking quietly becomes something a brand can pay to improve, and the whole thing stops being worth reading.</p>
+        <p class="body">A smallholder farmer notices something wrong with a maize leaf. The nearest extension officer is a bus ride away and may be booked for a week. By the time anyone with training sees the plant, the answer has stopped being useful, because the window in which a treatable disease is still treatable has closed.</p>
+        <p class="body">The obvious fix is to photograph the leaf and ask a model. The obvious fix also assumes a data bundle, a signal, and an app that will not silently fail in a field an hour from the nearest tower. Every one of those assumptions is wrong often enough that an online-only tool is a tool that works in a demo and not on a farm.</p>
       </div>
     </div>
   </section>
 
-  <p class="pull rv">A ranking a brand can buy is not a ranking. It is an advertisement with a number on it.</p>
+  <p class="pull rv">The answer has to arrive while the farmer is still standing in front of the plant.</p>
 
   <section class="sec">
     <div class="sec-grid">
       <h2 class="h2 rv">What it does</h2>
       <div class="rv">
-        <p class="body">People review and rate the Kenyan brands they actually use. Those signals aggregate into a public score and a rank position for every brand inside every sector, recalculated as opinion moves. Each brand gets a page that ranks in search and that the brand itself cannot edit.</p>
+        <p class="body">Point the camera at an affected leaf. The diagnosis happens on the device, in the time it takes to frame the shot, and it happens whether or not there is a connection. If the model is not confident enough in its own answer, and only then, it offers to ask a stronger cloud service instead.</p>
         <ul class="plain">
-          <li>The KPI Score, a weighted model rather than an average of stars</li>
-          <li>Rankings by sector, from banking and telecom to aviation and healthcare</li>
-          <li>Polls with anonymous voting, so an opinion costs nothing to give</li>
-          <li>An editorial layer of written analysis, with its own admin and scheduling</li>
-          <li>An embeddable badge a brand can put on its own site</li>
-          <li>Accounts, email verification, moderation queues and three staff roles</li>
-          <li>A published methodology, because a score nobody can interrogate is a rumour</li>
+          <li>Eighteen disease classes across maize, tomato, potato and pepper, recognised on the handset</li>
+          <li>A cloud second opinion, used only when on-device confidence falls below seventy five percent</li>
+          <li>English and Kiswahili throughout, not as an afterthought bolted onto an English app</li>
+          <li>Scan history kept locally, so a farmer can show what the plant looked like a fortnight ago</li>
+          <li>Location tagging on scans, which is what makes a map of outbreaks possible later</li>
+          <li>A map of nearby agro dealers, because a diagnosis without a source of treatment is trivia</li>
+          <li>Phone number sign in, since that is the account every farmer already has</li>
         </ul>
         <div class="figs">
-          <div><b>45</b><span>Sectors of the Kenyan economy indexed</span></div>
-          <div><b>1,072</b><span>Brand entries, each one approved by a person before it is public</span></div>
-          <div><b>0</b><span>Ways a brand can pay to move its score</span></div>
+          <div><b>2.5 MB</b><span>The entire disease model, small enough to ship inside the app</span></div>
+          <div><b>18</b><span>Disease classes across four crops</span></div>
+          <div><b>0</b><span>Bytes of data needed for a diagnosis in the common case</span></div>
         </div>
       </div>
     </div>
@@ -177,45 +168,34 @@ footer{display:flex;justify-content:space-between;padding:2rem 0;font-size:.8rem
 
   <section class="sec">
     <div class="sec-grid">
-      <h2 class="h2 rv">The score is the product</h2>
+      <h2 class="h2 rv">On-device first, cloud second</h2>
       <div class="rv">
-        <p class="body">The KPI Score is a weighted average multiplied by a credibility factor. Every rating carries the weight of the contributor behind it, and a recent opinion counts for more than one from two years ago. The credibility factor then discounts thin evidence, so a score resting on three opinions does not get to look as solid as one resting on a hundred.</p>
-        <p class="body">Rank position falls out of the score, then out of the volume of evidence behind it, then out of the name so the order does not drift between runs. A brand with no reviews and no votes gets no position at all rather than being sorted to the bottom. It has not been judged, so there is nothing honest to say about where it stands.</p>
-        <p class="body">The formula I inherited added half a point for a verified badge, three tenths for featured placement and two tenths for sponsorship, which meant a brand could buy a full point of score. I took all three out. Paid placement can decide where a brand is displayed. It must never decide what a brand scores, and the calculation now takes no commercial input at all, so there is nothing left to quietly turn back on.</p>
+        <p class="body">The classifier is a MobileNetV2 quantised down to two and a half megabytes and bundled with the application, so the first diagnosis works before the phone has ever had a connection. Quantisation costs a little accuracy and buys the only property that matters here, which is that the feature exists at all when there is no signal.</p>
+        <p class="body">The confidence threshold is what makes that honest. Below seventy five percent the app does not guess and does not quietly present a weak answer as a strong one. It says the on-device result is uncertain and offers the cloud instead, which is a choice the farmer makes knowing it will cost data. Cloud is the fallback rather than the default, so a confident answer never spends money the farmer did not agree to spend.</p>
       </div>
     </div>
   </section>
 
   <section class="sec">
     <div class="sec-grid">
-      <h2 class="h2 rv">The badge that refuses to flatter</h2>
+      <h2 class="h2 rv">Kiswahili is not a translation layer</h2>
       <div class="rv">
-        <p class="body">A brand can paste one snippet and show its live score on its own homepage. It is given away rather than sold, because every badge is a link back from a company's own domain, and charging for it would only mean fewer of them.</p>
-        <p class="body">The part worth pointing at is what it does when a brand has no ratings. It says so. It shows no number, and the API returns null rather than zero, so nobody drawing the badge themselves can render an unrated brand as a bottom score either. A badge sits on the one page a brand fully controls, which makes it the one place an invented number would look most official and be questioned least. The setup panel also states plainly that the badge keeps showing the score when it falls, and that there is no setting to freeze it.</p>
+        <p class="body">The app is bilingual from the string files up. That sounds like a small distinction until you have used software where the interface switched language but the actual disease names, the treatment advice and the error messages all stayed in English, which is the part a farmer needed most.</p>
+        <p class="body">This is the same argument as the offline model. A tool for people in this country either works in the language they use and on the connection they have, or it is a tool for somebody else that happens to have been aimed here.</p>
       </div>
     </div>
   </section>
 
   <section class="sec">
     <div class="sec-grid">
-      <h2 class="h2 rv">How it runs</h2>
+      <h2 class="h2 rv">How it was built</h2>
       <div class="rv">
-        <p class="body">Next.js on the App Router in TypeScript, PostgreSQL behind Prisma, sessions on signed cookies, and mail through the domain's own SMTP. It is self-hosted on an Ubuntu VPS under PM2 rather than a managed platform, reached through a Cloudflare Tunnel so the firewall never has to open a port inbound at all.</p>
-        <p class="body">Most pages are built ahead of time and revalidated, because the whole proposition rests on ranking in search for terms like best bank in Kenya. The sitemap is generated from the database per request, after a spell where it was frozen at build time and had quietly stopped listing anything added since the last deploy.</p>
+        <p class="body">The app is Flutter, one codebase for both platforms, with the inference running through TensorFlow Lite against the bundled model file. History lives in a local SQLite database so the app is fully usable with the radio off, and identity is Firebase phone authentication. The screens are organised by feature, scanning, history, map and settings, with localisation as its own layer rather than scattered through the widgets.</p>
+        <p class="body">Behind it sits a Node API on PostgreSQL, deliberately thin. It logs scans for the outbreak map and mediates the Plant.id call and the agro dealer lookup through Google Maps, holding the keys so they never ship inside the app. The important design point is that the backend is optional to the core feature: if it is unreachable, diagnosis still works and the scan queues locally. Auth is verified twice, at the Firebase layer and again as a token on the API.</p>
         <div class="stack">
-          <span>Next.js 14</span><span>TypeScript</span><span>PostgreSQL</span><span>Prisma</span>
-          <span>Tailwind v4</span><span>JWT</span><span>PM2</span><span>Ubuntu</span><span>Cloudflare Tunnel</span><span>Nodemailer</span>
+          <span>Flutter</span><span>Dart</span><span>TensorFlow Lite</span><span>MobileNetV2</span><span>SQLite</span><span>Firebase Auth</span>
+          <span>Node.js</span><span>Express</span><span>PostgreSQL</span><span>Plant.id API</span><span>Google Maps</span><span>Render</span>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec">
-    <div class="sec-grid">
-      <h2 class="h2 rv">What it taught me</h2>
-      <div class="rv">
-        <p class="body">Breadth is not depth. The index went from 160 brands to over a thousand in a single pass, and the honest result was a queue of nine hundred entries a person still has to approve one at a time. Pages with nothing on them do not merely fail to help. They pull down the pages that would have worked.</p>
-        <p class="body">The other lesson is that a check which cannot fail is not a check. The audit proving the badge escapes untrusted text ends by rendering the same payload unescaped on purpose, and the run fails if that control does not trip. Several things in this codebase reported success for weeks while doing nothing, and the ones I trust now are the ones I have watched break.</p>
       </div>
     </div>
   </section>
@@ -224,15 +204,14 @@ footer{display:flex;justify-content:space-between;padding:2rem 0;font-size:.8rem
     <div class="sec-grid">
       <h2 class="h2 rv">Where it goes</h2>
       <div class="rv">
-        <p class="body">Reviews are the binding constraint and no amount of engineering removes it. Everything the platform eventually sells, the brand dashboards, the sentiment tracking against a competitor, the market intelligence, depends on there being enough opinion in the index to be worth reading. The build order follows that rather than the other way round.</p>
-        <p class="body">What a brand will pay for is not a better position. It is the ability to reply in public, to invite its own customers without screening for the happy ones, and to watch what is being said about it. The product is the independence, and it is the one feature that stops working the moment it is for sale.</p>
+        <p class="body">Every scan carries a location, which means the scans together are the beginning of a live map of what is spreading and where. That is worth considerably more to an agricultural office than any single diagnosis is worth to a single farmer, and it is the direction the data model was shaped for from the start.</p>
+        <p class="body">The nearer work is duller and matters more. Four crops is not enough, the model needs retraining on images taken by the phones people actually own rather than on a clean research dataset, and the accuracy claim needs to be measured in a field rather than asserted from a validation split.</p>
       </div>
     </div>
   </section>
-
   <section class="next">
     <p class="meta">Next project</p>
-    <a href="hub-lab.html">Hub Lab</a>
+    <a href="sote.html">Sote</a>
   </section>
 
   <footer>
