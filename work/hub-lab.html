@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hub Lab, a project by John Wesley Ameda</title>
+<meta name="description" content="A learning platform for a community hub, built for the network it actually has.">
+<link rel="canonical" href="https://wesley.kenyaproductindex.co.ke/work/hub-lab">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="John Wesley Ameda">
+<meta property="og:title" content="Hub Lab, a project by John Wesley Ameda">
+<meta property="og:description" content="A learning platform for a community hub, built for the network it actually has.">
+<meta property="og:url" content="https://wesley.kenyaproductindex.co.ke/work/hub-lab">
+<meta property="og:image" content="https://wesley.kenyaproductindex.co.ke/assets/portrait-hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#EFEDE8">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,85..125,300..800;1,85..125,300..700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#EFEDE8;--ink:#16171A;--blue:#3049E8;--ash:#84837E;
+  --line:rgba(22,23,26,.16);
+  --f:'Archivo',-apple-system,BlinkMacSystemFont,sans-serif;
+  --gut:2.5rem;--ease:cubic-bezier(.19,1,.22,1);
+}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--f);line-height:1.4;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+::selection{background:var(--blue);color:var(--paper)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.shell{max-width:1440px;margin:0 auto;padding:0 var(--gut)}
+.narrow{max-width:66ch}
+
+.display{font-size:clamp(3rem,11vw,9.5rem);font-weight:600;line-height:.88;letter-spacing:-.045em;font-variation-settings:'wdth' 96}
+.h2{font-size:clamp(1.8rem,4.4vw,3.4rem);font-weight:500;line-height:1.02;letter-spacing:-.035em}
+.body{font-size:clamp(.98rem,1.2vw,1.12rem);line-height:1.68;color:#3a3b3f}
+.body + .body{margin-top:1.2rem}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;padding:1.6rem var(--gut);mix-blend-mode:difference;color:#fff}
+nav .sig{font-weight:600;font-size:1.02rem;letter-spacing:-.02em}
+nav a.back{font-size:.92rem;position:relative;padding-bottom:2px}
+nav a.back::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(1);transform-origin:left;transition:transform .5s var(--ease)}
+nav a.back:hover::after{transform:scaleX(0);transform-origin:right}
+
+/* hero */
+.chero{padding:32vh 0 3rem}
+.chero .display .ln{overflow:hidden;display:block}
+.chero .display .ln span{display:block}
+.chero .tagline{font-size:clamp(1.05rem,1.8vw,1.5rem);font-weight:450;letter-spacing:-.02em;max-width:36ch;margin-top:2.4rem}
+
+/* meta */
+.cmeta{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.6rem 0;margin-top:4rem}
+.cmeta dt{font-size:.8rem;color:var(--ash);margin-bottom:.4rem}
+.cmeta dd{font-size:.96rem;font-weight:450;line-height:1.5}
+.cmeta dd a{border-bottom:1px solid var(--line);transition:color .3s var(--ease),border-color .3s var(--ease)}
+.cmeta dd a:hover{color:var(--blue);border-color:var(--blue)}
+
+/* plate */
+.plate{margin:clamp(3rem,7vw,6rem) 0;overflow:hidden;background:#ddd9d2}
+.plate img{width:100%;height:auto}
+.plate.tall img{aspect-ratio:16/10;object-fit:cover;object-position:top left}
+.plate figcaption{font-size:.84rem;color:var(--ash);margin-top:.9rem}
+.bleed{width:100%;max-width:none;padding:0}
+
+/* sections */
+.sec{padding:clamp(3.5rem,8vw,7rem) 0}
+.sec-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:clamp(2rem,6vw,5rem);align-items:start}
+.sec-grid h2{position:sticky;top:6rem}
+
+.pull{font-size:clamp(1.5rem,3.6vw,2.7rem);font-weight:450;line-height:1.16;letter-spacing:-.03em;max-width:20ch;padding:clamp(3rem,7vw,6rem) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+ul.plain{list-style:none;margin-top:1.6rem;border-top:1px solid var(--line)}
+ul.plain li{padding:.85rem 0;border-bottom:1px solid var(--line);font-size:.97rem;display:grid;grid-template-columns:1.6rem 1fr;gap:.6rem;align-items:baseline}
+ul.plain li::before{content:'';width:5px;height:5px;background:var(--blue);border-radius:50%;transform:translateY(-2px)}
+
+.stack{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.6rem}
+.stack span{font-size:.86rem;padding:.4rem .9rem;border:1px solid var(--line);border-radius:100px}
+
+/* next */
+.next{border-top:1px solid var(--line);padding:clamp(4rem,9vw,8rem) 0 4rem}
+.next .meta{font-size:.82rem;color:var(--ash);margin-bottom:1.5rem}
+.next a{font-size:clamp(2.2rem,7vw,5.5rem);font-weight:500;letter-spacing:-.04em;line-height:1;transition:color .4s var(--ease)}
+.next a:hover{color:var(--blue)}
+footer{display:flex;justify-content:space-between;padding:2rem 0;font-size:.8rem;color:var(--ash);border-top:1px solid var(--line);flex-wrap:wrap;gap:1rem}
+
+.rv{opacity:0;transform:translateY(30px)}
+.rv.on{opacity:1;transform:none;transition:opacity 1s var(--ease),transform 1s var(--ease)}
+
+@media(max-width:1000px){
+  :root{--gut:1.5rem}
+  .cmeta{grid-template-columns:1fr 1fr}
+  .sec-grid{grid-template-columns:1fr;gap:1.5rem}
+  .sec-grid h2{position:static}
+  .chero{padding:24vh 0 2rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="sig">Wesley Ameda</a>
+  <a href="../index.html#work" class="back">All work</a>
+</nav>
+
+<div class="shell">
+  <header class="chero">
+    <h1 class="display">
+      <span class="ln"><span>Hub Lab</span></span>
+    </h1>
+    <p class="tagline">A learning platform for a community hub, built for the network it actually has.</p>
+
+    <dl class="cmeta">
+      <div><dt>Role</dt><dd>Product design, development, deployment</dd></div>
+      <div><dt>Built for</dt><dd>Siaya Community Digital Hub</dd></div>
+      <div><dt>Year</dt><dd>2025 to now</dd></div>
+      <div><dt>Status</dt><dd><a href="https://hublab.kenyaproductindex.co.ke" rel="noopener">hublab.kenyaproductindex.co.ke</a></dd></div>
+    </dl>
+  </header>
+</div>
+
+<figure class="plate tall rv">
+  <img src="../assets/community-training.jpg" alt="A training session at the Siaya Community Digital Hub">
+</figure>
+
+<div class="shell">
+
+  <section class="sec">
+    <div class="sec-grid">
+      <h2 class="h2 rv">The problem</h2>
+      <div class="rv">
+        <p class="body">I teach in a room, which has a hard limit. Everyone has to be in Siaya, on the same day, at the same hour, and when the session ends the material ends with it. A learner who misses two weeks has no way back in, and a trainer who wants to know who is falling behind has to remember.</p>
+        <p class="body">The obvious answer is a learning platform, and the obvious learning platforms are built for somewhere else. They assume a stable connection, a laptop per person, a card on file, and a learner who will read English at speed. Drop one of those assumptions and the product does not degrade gracefully. It simply stops.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="pull rv">Build for the connection people have, not the one the documentation assumes.</p>
+
+  <section class="sec">
+    <div class="sec-grid">
+      <h2 class="h2 rv">What it does</h2>
+      <div class="rv">
+        <p class="body">Courses break into modules and modules into lessons. A learner enrols, works through the material at their own pace, sits quizzes, submits assignments and finishes with a certificate that can be verified by anyone holding the link. Trainers get the other side of the same structure: who enrolled, who submitted, who stopped.</p>
+        <ul class="plain">
+          <li>Three roles, learner, trainer and admin, each with their own dashboard</li>
+          <li>Quizzes with several question types, and assignments with a submission trail</li>
+          <li>Certificates issued as real files, with a public page that verifies one</li>
+          <li>Lessons released on a schedule rather than dumped on day one</li>
+          <li>A daily sweep that notices a learner who has gone quiet and nudges them</li>
+          <li>Course recommendations at the end of a course, weighted to the same department</li>
+          <li>Messaging, announcements and notifications between trainers and learners</li>
+          <li>An audit log, because a certificate is a claim about a person</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-grid">
+      <h2 class="h2 rv">The network decided the design</h2>
+      <div class="rv">
+        <p class="body">The platform was written on a connection that cannot reach Google Fonts. That sounds like a footnote until you realise what it implies about everyone the platform is for, so there is no web font anywhere in the product. It runs on a system font stack that is already on the device, which also means the first paint does not wait on a request to another continent.</p>
+        <p class="body">The same logic runs through the rest of it. The front end installs as a progressive web app, so a phone treats it as an app rather than a tab to be lost. Background work sits on a queue, so a slow mail server delays an email rather than a page. None of this is clever. It is just refusing to assume conditions that do not exist here.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-grid">
+      <h2 class="h2 rv">Marking the parts that were not real</h2>
+      <div class="rv">
+        <p class="body">Partway through I went looking for features that only appeared to work. The AI assistant returned placeholder text that read like an answer. Certificate download had a button, a route and no file behind it. Messaging existed entirely in the browser and vanished on refresh.</p>
+        <p class="body">Each of those was labelled as not yet built, in the interface, where a learner would see it before clicking. A feature that pretends is worse than one that is missing, because the missing one only wastes a moment and the pretending one costs the trust in everything next to it. Most of that list is now genuinely built, and the label came off as each one became true.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-grid">
+      <h2 class="h2 rv">Two things that were broken for everyone</h2>
+      <div class="rv">
+        <p class="body">After go live, signing in worked and then dropped the user on a page that did not exist. The dashboards sat inside a route group, so their real addresses were one level shallower than every link, redirect and middleware rule in the codebase expected. Nobody had caught it because a developer already signed in never passes through that redirect. The fix was to make the folder real rather than to patch thirty links.</p>
+        <p class="body">The second one was the mobile menu, which opened empty. The drawer was reusing the desktop sidebar, and that component hides itself below a large breakpoint, so it dutifully rendered nothing at exactly the width where it was the only way to navigate. Both bugs were invisible on the machine they were built on, which is the entire argument for opening the thing on a phone before calling it done.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-grid">
+      <h2 class="h2 rv">How it runs</h2>
+      <div class="rv">
+        <p class="body">A NestJS API and a Next.js front end, PostgreSQL behind Prisma, with Redis carrying the job queue for mail, drip release and the re-engagement sweep. Both processes run under PM2 on the same Ubuntu box as EduLedger, on their own ports, reached through a Cloudflare Tunnel rather than an open port. Deployment is one script.</p>
+        <p class="body">Part of the platform was built alongside a collaborator, and reconciling the two halves was its own piece of work. The messaging module, settings and the real certificate pipeline came from that side while the redesign, the public site and the deployment came from mine.</p>
+        <div class="stack">
+          <span>NestJS</span><span>Next.js 14</span><span>TypeScript</span><span>PostgreSQL</span><span>Prisma</span>
+          <span>Redis</span><span>BullMQ</span><span>Tailwind</span><span>Zustand</span><span>Zod</span><span>PM2</span><span>Cloudflare Tunnel</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-grid">
+      <h2 class="h2 rv">Where it goes</h2>
+      <div class="rv">
+        <p class="body">The platform holds the curriculum I already teach, which means the next question is whether it holds up without me standing next to it. A cohort that finishes a course on Hub Lab without a trainer in the room is the only result that matters, and it is the one I have not proven yet.</p>
+        <p class="body">After that it stops being specific to one hub. The structure underneath, courses by department, enrolments, assessment and a verifiable certificate, is the same shape any training organisation needs, and very few of them near here have anything at all.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="next">
+    <p class="meta">Next project</p>
+    <a href="eduledger.html">EduLedger</a>
+  </section>
+
+  <footer>
+    <span>&copy; 2026 John Wesley Ameda</span>
+    <a href="mailto:wesley@kenyaproductindex.co.ke">wesley@kenyaproductindex.co.ke</a>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && window.Lenis){
+    var lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+    (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })();
+  }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: .12, rootMargin: '0px 0px -60px' });
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  var t = document.querySelector('.chero .display .ln span');
+  if (t && !reduce){
+    t.style.transform = 'translateY(105%)';
+    requestAnimationFrame(function(){
+      t.style.transition = 'transform 1.1s cubic-bezier(.19,1,.22,1) .15s';
+      t.style.transform = 'translateY(0)';
+    });
+  }
+})();
+</script>
+</body>
+</html>

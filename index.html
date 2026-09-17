@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Wesley Ameda</title>
+<meta name="description" content="Systems developer and trainer in Bondo, Siaya. I build software that moves money and runs institutions, and I teach people to build it.">
+<link rel="canonical" href="https://wesley.kenyaproductindex.co.ke/">
+<meta name="theme-color" content="#EFEDE8">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="John Wesley Ameda">
+<meta property="og:title" content="John Wesley Ameda, systems developer and trainer">
+<meta property="og:description" content="I build software that moves money and runs institutions, and I teach people to build it. Bondo, Siaya.">
+<meta property="og:url" content="https://wesley.kenyaproductindex.co.ke/">
+<meta property="og:image" content="https://wesley.kenyaproductindex.co.ke/assets/portrait-hero.jpg">
+<meta property="og:image:alt" content="John Wesley Ameda">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,85..125,300..800;1,85..125,300..700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --paper:#EFEDE8;
+  --ink:#16171A;
+  --blue:#3049E8;
+  --ash:#84837E;
+  --line:rgba(22,23,26,.16);
+  --f:'Archivo',-apple-system,BlinkMacSystemFont,sans-serif;
+  --gut:2.5rem;
+  --ease:cubic-bezier(.19,1,.22,1);
+}
+
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);color:var(--ink);font-family:var(--f);
+  font-variation-settings:'wdth' 100;
+  line-height:1.4;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body.lock{overflow:hidden;height:100vh}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+::selection{background:var(--blue);color:var(--paper)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+
+.shell{max-width:1440px;margin:0 auto;padding:0 var(--gut)}
+
+/* ---------- type scale ---------- */
+.display{
+  font-size:clamp(3.2rem,12.5vw,11rem);
+  font-weight:600;line-height:.86;letter-spacing:-.045em;
+  font-variation-settings:'wdth' 96;
+}
+.h2{font-size:clamp(2rem,5.4vw,4.6rem);font-weight:500;line-height:.98;letter-spacing:-.035em}
+.h3{font-size:clamp(1.4rem,2.6vw,2.2rem);font-weight:500;line-height:1.14;letter-spacing:-.025em}
+.lead{font-size:clamp(1.2rem,2.5vw,2.05rem);font-weight:400;line-height:1.3;letter-spacing:-.02em}
+.body{font-size:clamp(.95rem,1.15vw,1.08rem);font-weight:400;line-height:1.65;color:#3a3b3f;max-width:62ch}
+.meta{font-size:.8rem;font-weight:500;letter-spacing:.01em;color:var(--ash)}
+
+/* ---------- preloader ---------- */
+#pre{
+  position:fixed;inset:0;z-index:900;background:var(--ink);color:var(--paper);
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:var(--gut);
+}
+#pre .word{font-size:clamp(2.4rem,9vw,7rem);font-weight:600;letter-spacing:-.045em;line-height:.9;overflow:hidden}
+#pre .word span{display:block;transform:translateY(105%)}
+#pre .pct{font-size:clamp(2.4rem,9vw,7rem);font-weight:300;letter-spacing:-.04em;font-variant-numeric:tabular-nums;line-height:.9}
+#pre .bar{position:absolute;left:var(--gut);right:var(--gut);bottom:calc(var(--gut) + 9rem);height:1px;background:rgba(239,237,232,.22)}
+#pre .bar i{display:block;height:100%;width:0;background:var(--paper)}
+
+/* ---------- nav ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.6rem var(--gut);mix-blend-mode:difference;color:#fff;
+}
+nav .sig{font-weight:600;font-size:1.02rem;letter-spacing:-.02em}
+nav .sig i{font-style:normal;font-weight:400;color:#9c9c9c}
+nav ul{display:flex;gap:2.2rem;list-style:none}
+nav a{font-size:.92rem;font-weight:450;position:relative;padding-bottom:2px}
+nav a::after{
+  content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease);
+}
+nav a:hover::after{transform:scaleX(1);transform-origin:left}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:2.2rem;position:relative}
+.hero-portrait{
+  position:absolute;right:var(--gut);top:14vh;width:min(30vw,380px);aspect-ratio:3/4;
+  overflow:hidden;z-index:1;
+}
+.hero-portrait img{width:100%;height:120%;object-fit:cover;object-position:top center;will-change:transform}
+.hero-head{position:relative;z-index:2}
+.hero-head .ln{overflow:hidden;display:block}
+.hero-head .ln span{display:block;will-change:transform}
+.hero-foot{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;
+  margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--line);flex-wrap:wrap;
+}
+.hero-foot p{font-size:clamp(1rem,1.5vw,1.28rem);font-weight:450;max-width:34ch;line-height:1.35;letter-spacing:-.015em}
+.hero-foot .where{text-align:right}
+.hero-foot .where b{display:block;font-weight:500;font-size:.95rem}
+.hero-foot .where span{font-size:.82rem;color:var(--ash)}
+
+/* ---------- statement ---------- */
+.statement{padding:clamp(7rem,16vw,15rem) 0}
+.statement .lead{max-width:22ch}
+.statement .lead em{font-style:normal;color:var(--ash)}
+.statement .cols{display:grid;grid-template-columns:1fr 1fr;gap:var(--gut);margin-top:4rem;align-items:start}
+.statement .cols .body:first-child{grid-column:2}
+
+/* ---------- work ---------- */
+.work{padding-bottom:clamp(5rem,10vw,9rem)}
+.work-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:1.2rem;border-bottom:1px solid var(--line)}
+.work-head .meta{font-size:.82rem}
+.row{
+  display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;
+  padding:clamp(1.6rem,3.4vw,2.8rem) 0;border-bottom:1px solid var(--line);
+  position:relative;transition:padding-left .7s var(--ease);
+}
+.row:hover{padding-left:1.4rem}
+.row .rt{font-size:clamp(1.7rem,4.6vw,3.6rem);font-weight:500;letter-spacing:-.035em;line-height:1;transition:color .4s var(--ease)}
+.row:hover .rt{color:var(--blue)}
+.row .rr{text-align:right;display:flex;gap:2.4rem;align-items:baseline}
+.row .rr span{font-size:.86rem;color:var(--ash);white-space:nowrap}
+.row .live{color:var(--blue);font-weight:500}
+.row.nolink .rt{color:var(--ash)}
+.row.nolink:hover .rt{color:var(--ash)}
+
+#peek{
+  position:fixed;top:0;left:0;width:290px;height:200px;z-index:400;
+  pointer-events:none;overflow:hidden;opacity:0;
+  transform:translate(-50%,-50%) scale(.82);
+  transition:opacity .45s var(--ease),transform .45s var(--ease);
+}
+#peek.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+#peek img{width:100%;height:100%;object-fit:cover;object-position:top left}
+
+/* ---------- teaching (dark) ---------- */
+.teach{background:var(--ink);color:var(--paper);padding:clamp(6rem,13vw,12rem) 0;margin-top:2rem}
+.teach .h2{max-width:16ch}
+.teach .body{color:rgba(239,237,232,.66);margin-top:2rem}
+.teach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(239,237,232,.18);margin-top:5rem;border-top:1px solid rgba(239,237,232,.18);border-bottom:1px solid rgba(239,237,232,.18)}
+.tc{background:var(--ink);padding:2.4rem 2rem 2.6rem}
+.tc h4{font-size:1.16rem;font-weight:500;letter-spacing:-.02em;margin-bottom:.9rem}
+.tc p{font-size:.92rem;line-height:1.66;color:rgba(239,237,232,.6);font-weight:350}
+.tc .fig{font-size:2.7rem;font-weight:300;letter-spacing:-.04em;margin-bottom:1.4rem;color:var(--blue);font-variant-numeric:tabular-nums}
+
+/* ---------- gallery ---------- */
+.gal{padding:clamp(6rem,12vw,11rem) 0}
+.gal-track{display:flex;gap:1.2rem;overflow-x:auto;scrollbar-width:none;padding-bottom:1rem;cursor:grab}
+.gal-track::-webkit-scrollbar{display:none}
+.gal-track.drag{cursor:grabbing}
+.gal-item{flex:0 0 clamp(250px,32vw,440px)}
+.gal-item .fr{aspect-ratio:4/3;overflow:hidden;background:#ddd9d2}
+.gal-item img{width:100%;height:100%;object-fit:cover}
+.gal-item p{margin-top:.85rem;font-size:.86rem;color:var(--ash)}
+
+/* ---------- about ---------- */
+.about{padding:clamp(5rem,11vw,10rem) 0;display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,6vw,6rem);align-items:center}
+.about-fr{aspect-ratio:4/5;overflow:hidden}
+.about-fr img{width:100%;height:100%;object-fit:cover;object-position:center 8%}
+.about dl{margin-top:2.6rem;border-top:1px solid var(--line)}
+.about dl div{display:grid;grid-template-columns:1fr 2fr;gap:1.5rem;padding:.95rem 0;border-bottom:1px solid var(--line)}
+.about dt{font-size:.84rem;color:var(--ash);font-weight:450}
+.about dd{font-size:.94rem;font-weight:450}
+
+/* ---------- contact ---------- */
+.contact{padding:clamp(6rem,13vw,12rem) 0 3rem;border-top:1px solid var(--line)}
+.contact .display{margin-bottom:3rem}
+.contact .display a{position:relative;display:inline-block}
+.contact .display a::after{content:'';position:absolute;left:0;bottom:.08em;width:100%;height:.045em;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .7s var(--ease)}
+.contact .display a:hover{color:var(--blue)}
+.contact .display a:hover::after{transform:scaleX(1);transform-origin:left}
+.contact-rows{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;border-top:1px solid var(--line);padding-top:1.4rem}
+.contact-rows dt{font-size:.8rem;color:var(--ash);margin-bottom:.35rem}
+.contact-rows dd{font-size:.95rem;font-weight:450}
+footer{display:flex;justify-content:space-between;padding:4rem 0 2rem;font-size:.8rem;color:var(--ash);flex-wrap:wrap;gap:1rem}
+
+/* ---------- reveals ---------- */
+.rv{opacity:0;transform:translateY(34px)}
+.rv.on{opacity:1;transform:none;transition:opacity 1s var(--ease),transform 1s var(--ease)}
+
+/* ---------- responsive ---------- */
+@media(max-width:1000px){
+  :root{--gut:1.5rem}
+  .statement .cols{grid-template-columns:1fr;gap:1.6rem}
+  .statement .cols .body:first-child{grid-column:1}
+  .teach-grid{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr;gap:2.5rem}
+  .about-fr{aspect-ratio:4/3}
+  .contact-rows{grid-template-columns:1fr 1fr}
+  .hero-portrait{display:none}
+  nav ul{gap:1.3rem}
+  nav a{font-size:.84rem}
+  #peek{display:none}
+}
+@media(max-width:620px){
+  .row{grid-template-columns:1fr;gap:.6rem}
+  .row .rr{text-align:left;justify-content:flex-start;gap:1.4rem}
+  .hero-foot{flex-direction:column;align-items:flex-start}
+  .hero-foot .where{text-align:left}
+  nav ul li:nth-child(2){display:none}
+  .about dl div{grid-template-columns:1fr;gap:.2rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+  #peek{display:none}
+}
+</style>
+</head>
+<body class="lock">
+
+<div id="pre">
+  <div class="word"><span>Wesley Ameda</span></div>
+  <div class="pct">0</div>
+  <div class="bar"><i></i></div>
+</div>
+
+<nav>
+  <a href="/" class="sig">Wesley Ameda <i>, Bondo</i></a>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#teaching">Teaching</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main class="shell">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-portrait"><img id="hp" src="assets/portrait-hero.jpg" alt="John Wesley Ameda"></div>
+    <div class="hero-head display">
+      <span class="ln"><span>Software that</span></span>
+      <span class="ln"><span>moves money</span></span>
+      <span class="ln"><span>and runs schools.</span></span>
+    </div>
+    <div class="hero-foot">
+      <p>I build the systems, then I teach the people who will use them.</p>
+      <div class="where">
+        <b>Bondo, Siaya</b>
+        <span>Available for work</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STATEMENT -->
+  <section class="statement">
+    <p class="lead rv">A fee ledger that reconciles itself. A classroom of teachers who have never opened a spreadsheet. <em>Both are the same job.</em></p>
+    <div class="cols">
+      <p class="body rv">Most of what I build has money or records passing through it, which means it cannot be almost right. EduLedger takes M-Pesa payments for a school of 217 students and closes the books without anyone retyping a receipt. Kenya Product Index ranks brands on a weighted model rather than an average of stars.</p>
+      <p class="body rv">The other half of the week is a classroom. I head training at the Siaya Community Digital Hub, where I have taken 1,576 people through digital skills, from children learning their first Scratch block to teachers across nine sub-counties. Teaching is what stops me from building things only I can operate.</p>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="work" id="work">
+    <div class="work-head">
+      <h2 class="h3">Selected work</h2>
+      <span class="meta">2023 to now</span>
+    </div>
+
+    <a class="row" href="work/eduledger.html" data-peek="assets/work-eduledger.jpg">
+      <span class="rt">EduLedger</span>
+      <span class="rr"><span>School finance</span><span class="live">Live</span></span>
+    </a>
+
+    <a class="row" href="work/kenya-product-index.html" data-peek="assets/work-kenya-product-index.jpg">
+      <span class="rt">Kenya Product Index</span>
+      <span class="rr"><span>Consumer intelligence</span><span class="live">Live</span></span>
+    </a>
+
+    <a class="row" href="work/hub-lab.html" data-peek="assets/community-training.jpg">
+      <span class="rt">Hub Lab</span>
+      <span class="rr"><span>Learning platform</span><span class="live">Live</span></span>
+    </a>
+
+    <div class="row nolink">
+      <span class="rt">Sote</span>
+      <span class="rr"><span>Neighbourhood marketplace</span><span>In build</span></span>
+    </div>
+
+    <div class="row nolink">
+      <span class="rt">Cover Connect</span>
+      <span class="rr"><span>Insurance onboarding</span><span>In build</span></span>
+    </div>
+
+    <div class="row nolink">
+      <span class="rt">AgroMind</span>
+      <span class="rr"><span>Climate intelligence</span><span>In build</span></span>
+    </div>
+  </section>
+
+</main>
+
+<!-- TEACHING -->
+<section class="teach" id="teaching">
+  <div class="shell">
+    <h2 class="h2 rv">Teaching is not a side project. It is half the practice.</h2>
+    <p class="body rv">I write the curriculum, produce the material and stand in the room. The approach is the same every time: show what is happening underneath before handing anyone a shortcut, and use examples people already recognise. M-Pesa transactions and school fees teach a loop better than foo and bar ever will.</p>
+    <div class="teach-grid">
+      <div class="tc rv">
+        <div class="fig">1,576</div>
+        <h4>Learners trained</h4>
+        <p>Across hub programmes, government schemes and partner cohorts since 2023.</p>
+      </div>
+      <div class="tc rv">
+        <div class="fig">100</div>
+        <h4>Teachers, nine sub-counties</h4>
+        <p>Phase one of the KUPPET digital skills and financial literacy programme, delivered in person and online, graduated September 2026.</p>
+      </div>
+      <div class="tc rv">
+        <div class="fig">7&ndash;17</div>
+        <h4>Junior Tech Pioneers</h4>
+        <p>Four levels each school holiday, from Scratch to advanced web. Every level ends with a demo day in front of guardians.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gal">
+  <div class="shell">
+    <h2 class="h3 rv" style="margin-bottom:2.5rem">In the room</h2>
+  </div>
+  <div class="shell">
+    <div class="gal-track" id="gal">
+      <figure class="gal-item"><div class="fr"><img src="assets/summit-main.jpg" alt="Briefing at the hub" loading="lazy"></div><p>Briefing the CEOs of ICT Authority Kenya, Konza Technopolis and the hub, March 2026</p></figure>
+      <figure class="gal-item"><div class="fr"><img src="assets/community-training.jpg" alt="Training session" loading="lazy"></div><p>Digital skills training, Siaya Community Digital Hub</p></figure>
+      <figure class="gal-item"><div class="fr"><img src="assets/community-hackathon.jpg" alt="Hackathon" loading="lazy"></div><p>Siaya Digital Summit hackathon</p></figure>
+      <figure class="gal-item"><div class="fr"><img src="assets/community-jitume.jpg" alt="Jitume facilitation" loading="lazy"></div><p>Jitume facilitation for ICT Authority Kenya</p></figure>
+      <figure class="gal-item"><div class="fr"><img src="assets/summit-1.jpg" alt="Summit crowd" loading="lazy"></div><p>Presidential hub summit, Siaya</p></figure>
+      <figure class="gal-item"><div class="fr"><img src="assets/community-mazingira.jpg" alt="Mazingira Day" loading="lazy"></div><p>Mazingira Day</p></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="shell">
+  <section class="about" id="about">
+    <div class="about-fr rv"><img src="assets/portrait-hub.jpg" alt="Wesley Ameda at the hub" loading="lazy"></div>
+    <div>
+      <h2 class="h2 rv">I started in Turkana, fixing things that had to work without ideal conditions.</h2>
+      <p class="body rv" style="margin-top:1.8rem">My first job in tech was as an ICT field officer in Lodwar. Turkana teaches you quickly that a system is only as good as the power, the connection and the person in front of it. I have built everything since with that in mind, which is why the work tends to include the parts nobody credits: the server in the corner, the DNS filtering, the tunnel that gets a machine past CGNAT.</p>
+      <dl class="rv">
+        <div><dt>Now</dt><dd>Head of training and lead developer, Siaya Community Digital Hub</dd></div>
+        <div><dt>Companies</dt><dd>Bitroot, software. Njia, production and training.</dd></div>
+        <div><dt>Build with</dt><dd>Next.js, Node, Express, PostgreSQL, Prisma, Tailwind, Linux, PM2</dd></div>
+        <div><dt>Also</dt><dd>M-Pesa integrations, nginx, Cloudflare Tunnel, network and server setup</dd></div>
+      </dl>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT -->
+<div class="shell">
+  <section class="contact" id="contact">
+    <h2 class="display rv">Let's<br><a href="mailto:wesley@kenyaproductindex.co.ke">talk</a></h2>
+    <dl class="contact-rows rv">
+      <div><dt>Email</dt><dd><a href="mailto:wesley@kenyaproductindex.co.ke">wesley@kenyaproductindex.co.ke</a></dd></div>
+      <div><dt>Phone</dt><dd><a href="tel:+254793518514">0793 518 514</a></dd></div>
+      <div><dt>Based in</dt><dd>Bondo, Siaya County, Kenya</dd></div>
+      <div><dt>Status</dt><dd>Taking projects</dd></div>
+    </dl>
+    <footer>
+      <span>&copy; 2026 John Wesley Ameda</span>
+      <span>Built and deployed by me</span>
+    </footer>
+  </section>
+</div>
+
+<div id="peek"><img src="" alt=""></div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "John Wesley Ameda",
+  "url": "https://wesley.kenyaproductindex.co.ke/",
+  "image": "https://wesley.kenyaproductindex.co.ke/assets/portrait-hero.jpg",
+  "jobTitle": "Systems developer and trainer",
+  "email": "wesley@kenyaproductindex.co.ke",
+  "telephone": "+254793518514",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Bondo",
+    "addressRegion": "Siaya County",
+    "addressCountry": "KE"
+  },
+  "knowsAbout": [
+    "Software development",
+    "M-Pesa integration",
+    "PostgreSQL",
+    "Next.js",
+    "Linux server administration",
+    "Digital skills training"
+  ]
+}
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- preloader ---------- */
+  var pre = document.getElementById('pre');
+  var pct = pre.querySelector('.pct');
+  var bar = pre.querySelector('.bar i');
+  var word = pre.querySelector('.word span');
+  var heroLines = document.querySelectorAll('.hero-head .ln span');
+
+  heroLines.forEach(function(l){ l.style.transform = 'translateY(105%)'; });
+
+  function intro(){
+    document.body.classList.remove('lock');
+    pre.style.transition = 'transform 1s cubic-bezier(.76,0,.24,1)';
+    pre.style.transform = 'translateY(-100%)';
+    setTimeout(function(){ pre.remove(); }, 1000);
+    heroLines.forEach(function(l,i){
+      l.style.transition = 'transform 1.1s cubic-bezier(.19,1,.22,1) ' + (0.35 + i*0.09) + 's';
+      l.style.transform = 'translateY(0)';
+    });
+  }
+
+  if (reduce){
+    pre.remove(); document.body.classList.remove('lock');
+    heroLines.forEach(function(l){ l.style.transform = 'none'; });
+  } else {
+    word.style.transition = 'transform .9s cubic-bezier(.19,1,.22,1) .1s';
+    requestAnimationFrame(function(){ word.style.transform = 'translateY(0)'; });
+    var n = 0;
+    var tick = setInterval(function(){
+      n += Math.random() * 9;
+      if (n >= 100){ n = 100; clearInterval(tick); setTimeout(intro, 420); }
+      pct.textContent = Math.floor(n);
+      bar.style.width = n + '%';
+    }, 90);
+  }
+
+  /* ---------- smooth scroll ---------- */
+  var lenis = null;
+  if (!reduce && window.Lenis){
+    lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+    (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })();
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var el = document.querySelector(a.getAttribute('href'));
+        if (el){ e.preventDefault(); lenis.scrollTo(el, { offset: -20 }); }
+      });
+    });
+  }
+
+  /* ---------- reveals ---------- */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); }
+    });
+  }, { threshold: .15, rootMargin: '0px 0px -60px' });
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  /* ---------- hero portrait parallax ---------- */
+  var hp = document.getElementById('hp');
+  if (hp && !reduce){
+    addEventListener('scroll', function(){
+      var y = scrollY;
+      if (y < innerHeight * 1.2) hp.style.transform = 'translateY(' + (-y * 0.13) + 'px)';
+    }, { passive: true });
+  }
+
+  /* ---------- work list cursor peek ---------- */
+  var peek = document.getElementById('peek');
+  var peekImg = peek.querySelector('img');
+  var tx = 0, ty = 0, cx = 0, cy = 0, active = false;
+
+  document.querySelectorAll('.row[data-peek]').forEach(function(row){
+    row.addEventListener('mouseenter', function(){
+      peekImg.src = row.dataset.peek;
+      peek.classList.add('on');
+      active = true;
+    });
+    row.addEventListener('mouseleave', function(){
+      peek.classList.remove('on');
+      active = false;
+    });
+  });
+
+  addEventListener('mousemove', function(e){ tx = e.clientX; ty = e.clientY; }, { passive: true });
+  (function follow(){
+    cx += (tx - cx) * 0.12;
+    cy += (ty - cy) * 0.12;
+    if (active) peek.style.left = cx + 'px', peek.style.top = cy + 'px';
+    requestAnimationFrame(follow);
+  })();
+
+  /* ---------- gallery drag ---------- */
+  var gal = document.getElementById('gal');
+  var down = false, startX = 0, startL = 0;
+  gal.addEventListener('pointerdown', function(e){
+    down = true; startX = e.clientX; startL = gal.scrollLeft; gal.classList.add('drag');
+  });
+  addEventListener('pointerup', function(){ down = false; gal.classList.remove('drag'); });
+  gal.addEventListener('pointermove', function(e){
+    if (!down) return;
+    e.preventDefault();
+    gal.scrollLeft = startL - (e.clientX - startX);
+  });
+})();
+</script>
+</body>
+</html>
