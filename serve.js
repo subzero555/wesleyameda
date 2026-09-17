@@ -34,7 +34,7 @@ const TYPES = {
 // file and .git, none of which are part of the site. An allowlist means a
 // file added to the repo later is private until it is named here, rather
 // than public the moment it lands.
-const PUBLIC = new Set(['index.html', 'favicon.svg', 'robots.txt', 'sitemap.xml', 'work', 'assets']);
+const PUBLIC = new Set(['index.html', 'hobbies.html', 'design.html', 'marketing.html', 'hub.html', 'access.html', 'gallery.html', 'favicon.svg', 'robots.txt', 'sitemap.xml', 'work', 'assets']);
 
 function resolve(urlPath) {
   // Decode, drop the query, and refuse anything that climbs out of ROOT.
@@ -51,7 +51,9 @@ function resolve(urlPath) {
   // No dot segments anywhere, so .git and friends are unreachable by name.
   const segs = norm.split('/').filter(Boolean);
   if (segs.some(s => s.startsWith('.'))) return null;
-  if (segs.length && !PUBLIC.has(segs[0])) return null;
+  // Allow both /hobbies and /hobbies.html: the canonical URLs are extensionless,
+  // so the bare name has to pass the allowlist as well as the file name.
+  if (segs.length && !PUBLIC.has(segs[0]) && !PUBLIC.has(segs[0] + '.html')) return null;
 
   const full = path.join(ROOT, norm);
   if (full !== ROOT && !full.startsWith(ROOT + path.sep)) return null;

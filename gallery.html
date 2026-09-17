@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery, John Wesley Ameda</title>
+<meta name="description" content="Events, summits, partnerships and cohorts. The rooms I have been in and the work that happened in them.">
+<link rel="canonical" href="https://wesley.kenyaproductindex.co.ke/gallery">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="John Wesley Ameda">
+<meta property="og:title" content="Gallery, John Wesley Ameda">
+<meta property="og:description" content="Events, summits, partnerships and cohorts. The rooms I have been in and the work that happened in them.">
+<meta property="og:url" content="https://wesley.kenyaproductindex.co.ke/gallery">
+<meta property="og:image" content="https://wesley.kenyaproductindex.co.ke/assets/summit-main.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#EFEDE8">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,85..125,300..800;1,85..125,300..700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#EFEDE8;--ink:#16171A;--blue:#3049E8;--ash:#84837E;
+  --line:rgba(22,23,26,.16);
+  --f:'Archivo',-apple-system,BlinkMacSystemFont,sans-serif;
+  --gut:2.5rem;--ease:cubic-bezier(.19,1,.22,1);
+}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--f);line-height:1.4;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+::selection{background:var(--blue);color:var(--paper)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.shell{max-width:1440px;margin:0 auto;padding:0 var(--gut)}
+
+.display{font-size:clamp(2.7rem,9.5vw,8rem);font-weight:600;line-height:.9;letter-spacing:-.045em;font-variation-settings:'wdth' 96}
+.body{font-size:clamp(.98rem,1.2vw,1.12rem);line-height:1.68;color:#3a3b3f;max-width:58ch}
+.body + .body{margin-top:1.2rem}
+
+
+.ghero{padding:30vh 0 2.5rem}
+.ghero .display .ln{overflow:hidden;display:block}
+.ghero .display .ln span{display:block}
+.ghero .body{margin-top:2.4rem}
+
+.sec{padding:clamp(2.5rem,6vw,4.5rem) 0}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:1rem;border-bottom:1px solid var(--line);margin-bottom:2rem}
+.sec-head h2{font-size:1.05rem;font-weight:500;letter-spacing:-.015em}
+.sec-head span{font-size:.8rem;color:var(--ash)}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.9rem,2vw,1.4rem)}
+.grid figure{margin:0}
+.grid .fr{overflow:hidden;background:#ddd9d2;aspect-ratio:4/3}
+.grid img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.grid figure:hover img{transform:scale(1.04)}
+.grid figcaption{margin-top:.6rem;font-size:.82rem;line-height:1.5;color:var(--ash)}
+.grid figcaption b{display:block;font-weight:500;color:var(--ink);margin-bottom:.15rem}
+.grid img{object-position:center 26%}
+.grid figure.port .fr{aspect-ratio:3/4}
+.grid figure.port.wide .fr{aspect-ratio:4/3}
+.grid figure.wide{grid-column:span 2}
+.grid figure.wide .fr{aspect-ratio:16/9}
+
+.band{margin:clamp(3rem,7vw,5rem) 0;display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem}
+.band .fr{aspect-ratio:1;overflow:hidden;background:#ddd9d2}
+.band img{width:100%;height:100%;object-fit:cover}
+
+footer{display:flex;justify-content:space-between;padding:clamp(4rem,9vw,7rem) 0 2rem;font-size:.8rem;color:var(--ash);border-top:1px solid var(--line);flex-wrap:wrap;gap:1rem;margin-top:3rem}
+
+.rv{opacity:0;transform:translateY(30px)}
+.rv.on{opacity:1;transform:none;transition:opacity 1s var(--ease),transform 1s var(--ease)}
+
+@media(max-width:1000px){
+  :root{--gut:1.5rem}
+  .ghero{padding:22vh 0 2rem}
+  .grid{grid-template-columns:1fr 1fr}
+  .band{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:620px){
+  .grid{grid-template-columns:1fr}
+  .grid figure.wide{grid-column:span 1}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+  .grid figure:hover img{transform:none}
+}
+
+/* ---------- nav, shared ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:600;display:flex;align-items:center;justify-content:space-between;padding:1.6rem var(--gut);mix-blend-mode:difference;color:#fff}
+nav .sig{font-weight:600;font-size:1.02rem;letter-spacing:-.02em}
+nav .sig i{font-style:normal;font-weight:400;color:#9c9c9c}
+nav ul.navlinks{display:flex;gap:1.6rem;list-style:none}
+nav ul.navlinks a{font-size:.9rem;font-weight:450;position:relative;padding-bottom:2px;white-space:nowrap}
+nav ul.navlinks a::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+nav ul.navlinks a:hover::after{transform:scaleX(1);transform-origin:left}
+nav #mtoggle{display:none;background:none;border:0;color:inherit;font:inherit;font-size:.92rem;font-weight:450;cursor:pointer;padding:.4rem 0;letter-spacing:-.01em}
+
+#mmenu{position:fixed;inset:0;z-index:590;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:6rem var(--gut) 2rem;overflow-y:auto}
+#mmenu[hidden]{display:none}
+#mmenu ul{list-style:none}
+#mmenu li{overflow:hidden}
+#mmenu a{display:block;font-size:clamp(2rem,10vw,3.2rem);font-weight:500;letter-spacing:-.035em;line-height:1.16;padding:.12em 0}
+#mmenu .mfoot{margin-top:2.5rem;padding-top:1.4rem;border-top:1px solid rgba(239,237,232,.18);display:flex;flex-direction:column;gap:.5rem}
+#mmenu .mfoot a{font-size:.95rem;font-weight:400;color:rgba(239,237,232,.7);letter-spacing:0}
+body.menu-open{overflow:hidden}
+
+@media(max-width:1100px){
+  nav ul.navlinks{display:none}
+  nav #mtoggle{display:block}
+}
+
+/* ---------- phone ---------- */
+@media(max-width:620px){
+  :root{--gut:1.15rem}
+  body{font-size:15px}
+  .display{letter-spacing:-.035em}
+  .h2{letter-spacing:-.028em}
+  .body{max-width:none}
+  .sec{padding:2.4rem 0}
+  .sec-head{flex-direction:column;align-items:flex-start;gap:.2rem}
+  .grid,.plates,.band{gap:.7rem}
+  .strip img,.shots img,.screens img,.teach-shots img{flex-basis:78vw}
+  .shots img{flex-basis:56vw}
+  footer{flex-direction:column;gap:.5rem}
+  a[href^="mailto:"],a[href^="tel:"]{word-break:break-word}
+}
+@media(max-width:620px) and (pointer:coarse){
+  nav ul.navlinks a,#mmenu a,.item,.row{-webkit-tap-highlight-color:transparent}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="sig">Wesley Ameda</a>
+  <button id="mtoggle" aria-expanded="false" aria-controls="mmenu">Menu</button>
+  <ul class="navlinks">
+      <li><a href="work/index.html">Work</a></li>
+      <li><a href="hub.html">The hub</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="design.html">Design</a></li>
+      <li><a href="marketing.html">Marketing</a></li>
+      <li><a href="hobbies.html">Hobbies</a></li>
+      <li><a href="access.html">Access</a></li>
+      <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div id="mmenu" hidden>
+  <ul>
+    <li><a href="work/index.html">Work</a></li>
+    <li><a href="hub.html">The hub</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="design.html">Design</a></li>
+    <li><a href="marketing.html">Marketing</a></li>
+    <li><a href="hobbies.html">Hobbies</a></li>
+    <li><a href="access.html">Access</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="mfoot">
+    <a href="mailto:wesley@kenyaproductindex.co.ke">wesley@kenyaproductindex.co.ke</a>
+    <a href="tel:+254793518514">0793 518 514</a>
+  </div>
+</div>
+
+<div class="shell">
+  <header class="ghero">
+    <h1 class="display">
+      <span class="ln"><span>Gallery</span></span>
+    </h1>
+    <p class="body">Summits, launches, partnerships and cohorts. Some of this is work I ran, some of it is work I was brought into, and some of it is simply being in the room when something worth being in the room for happened. Where it was somebody else's event, I have said so.</p>
+  </header>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Odoo Experience</h2>
+      <span>Nairobi, September 2026</span>
+    </div>
+    <div class="grid rv">
+      <figure class="wide"><div class="fr"><img src="assets/odoo-5.jpg" alt="At the Odoo event" loading="lazy"></div><figcaption><b>Odoo Experience Africa</b>Two days at the Odoo event in Nairobi, on the third and fourth of September.</figcaption></figure>
+      <figure class="port"><div class="fr"><img src="assets/odoo-1.jpg" alt="Day two of the Odoo event" loading="lazy"></div><figcaption><b>Day two</b>The fourth of September.</figcaption></figure>
+      <figure class="port"><div class="fr"><img src="assets/odoo-2.jpg" alt="At the Odoo event" loading="lazy"></div><figcaption><b>On the floor</b>Between sessions.</figcaption></figure>
+      <figure class="port"><div class="fr"><img src="assets/odoo-3.jpg" alt="Networking at the Odoo event" loading="lazy"></div><figcaption><b>Networking</b>Meeting the people building business software in this market, including a founder working on an AI product.</figcaption></figure>
+      <figure class="port"><div class="fr"><img src="assets/odoo-4.jpg" alt="Networking at the Odoo event" loading="lazy"></div><figcaption><b>Conversations</b>The reason to attend an event like this is rarely the talks.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Summits and hackathons</h2>
+      <span>Siaya and Eldoret</span>
+    </div>
+    <div class="grid rv">
+      <figure class="wide"><div class="fr"><img src="assets/summit-main.jpg" alt="Briefing at the hub" loading="lazy"></div><figcaption><b>Briefing the chief executives</b>Presenting to the heads of the ICT Authority, Konza Technopolis and the hub, March 2026.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/summit-1.jpg" alt="Summit at the hub" loading="lazy"></div><figcaption><b>Presidential hub summit</b>Siaya.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/summit-2.jpg" alt="Summit at the hub" loading="lazy"></div><figcaption><b>Siaya Digital Summit</b>The wider programme around the hub.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/summit-3.jpg" alt="Summit at the hub" loading="lazy"></div><figcaption><b>Summit sessions</b>Siaya.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/community-hackathon.jpg" alt="Hackathon" loading="lazy"></div><figcaption><b>Siaya Digital Summit hackathon</b>Where a good deal of the Hub Lab community first met.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/community-hackathon-konza.jpg" alt="Hackathon at the hub" loading="lazy"></div><figcaption><b>Hackathon at the hub</b>With colleagues from the hub and Konza Technopolis.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/eldoret-hackathon-1.jpg" alt="Eldoret summit" loading="lazy"></div><figcaption><b>Invited on to Eldoret</b>Participants from the Siaya hackathon were called to the Eldoret hackathon summit afterwards.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/summit-certificates-1.jpg" alt="Participants with certificates" loading="lazy"></div><figcaption><b>Certificates, October 2025</b>Hackathon and training participants at the close of the summit.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Partnerships and state programmes</h2>
+      <span>Work brought into the hub</span>
+    </div>
+    <div class="grid rv">
+      <figure><div class="fr"><img src="assets/community-jitume.jpg" alt="Jitume facilitation" loading="lazy"></div><figcaption><b>Jitume</b>Facilitating the Jitume programme for the ICT Authority.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/community-icta-visit.jpg" alt="With an ICT Authority official" loading="lazy"></div><figcaption><b>ICT Authority</b>With an Authority official at the hub.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/ajira-training-3.jpg" alt="Ajira Digital trainer training" loading="lazy"></div><figcaption><b>Ajira Digital</b>Trainer training, run in partnership with the hub.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/ajira-training-4.jpg" alt="Ajira Digital trainer training" loading="lazy"></div><figcaption><b>Ajira trainers</b>Teaching the people who go on to teach.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/film-commission-3.jpg" alt="Kenya Film Commission training" loading="lazy"></div><figcaption><b>Kenya Film Commission</b>Learners working with the Commission's equipment inside the hub.</figcaption></figure>
+      <figure class="port"><div class="fr"><img src="assets/hub/film-commission-4.jpg" alt="Kenya Film Commission training" loading="lazy"></div><figcaption><b>Film training</b>Production skills, taught on real kit.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/russian-ambassador-2.jpg" alt="The Russian Ambassador visiting" loading="lazy"></div><figcaption><b>Russian Ambassador to Kenya</b>Visiting during a Film Commission training session.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/russian-ambassador-3.jpg" alt="The Russian Ambassador visiting" loading="lazy"></div><figcaption><b>The visit</b>Shown around the training in progress.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/canadian-embassy-3.jpg" alt="Canadian Embassy delegates" loading="lazy"></div><figcaption><b>Canadian Embassy</b>Delegates visiting the hub.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Training and community days</h2>
+      <span>The regular work</span>
+    </div>
+    <div class="grid rv">
+      <figure><div class="fr"><img src="assets/community-training.jpg" alt="Digital skills training" loading="lazy"></div><figcaption><b>Digital skills training</b>The everyday work at the hub.</figcaption></figure>
+      <figure class="port"><div class="fr"><img src="assets/hub/bf4-mazingira-2.jpg" alt="Mazingira Day with learners" loading="lazy"></div><figcaption><b>Mazingira Day, 2025</b>Out of the room with a Beyond Form 4 cohort.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/beyond-form-4-15.jpg" alt="A Beyond Form 4 cohort" loading="lazy"></div><figcaption><b>Beyond Form 4</b>A cohort partway through the programme.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/beyond-form-4-16.jpg" alt="A Beyond Form 4 cohort" loading="lazy"></div><figcaption><b>Beyond Form 4</b>In session.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/beyond-form-4-17.jpg" alt="A Beyond Form 4 cohort" loading="lazy"></div><figcaption><b>Beyond Form 4</b>A cohort partway through the programme.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/beyond-form-4-18.jpg" alt="A Beyond Form 4 cohort" loading="lazy"></div><figcaption><b>Beyond Form 4</b>A cohort partway through the programme.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/beyond-form-4-19.jpg" alt="A Beyond Form 4 cohort" loading="lazy"></div><figcaption><b>Beyond Form 4</b>A cohort partway through the programme.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/beyond-form-4-20.jpg" alt="Networking and cabling training" loading="lazy"></div><figcaption><b>Networking and cabling</b>Hands on training at the hub summit, March 2026.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/beyond-form-4-21.jpg" alt="Networking and cabling training" loading="lazy"></div><figcaption><b>Networking and cabling</b>Hands on training at the hub summit, March 2026.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/beyond-form-4-22.jpg" alt="Networking and cabling training" loading="lazy"></div><figcaption><b>Networking and cabling</b>Hands on training at the hub summit, March 2026.</figcaption></figure>
+      <figure><div class="fr"><img src="assets/hub/beyond-form-4-23.jpg" alt="Networking and cabling training" loading="lazy"></div><figcaption><b>Networking and cabling</b>Hands on training at the hub summit, March 2026.</figcaption></figure>
+      <figure class="port"><div class="fr"><img src="assets/hub/hub-desk-me-2.jpg" alt="At the hub" loading="lazy"></div><figcaption><b>At the desk</b>The other half of the week.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>The hub itself</h2>
+      <span>Branding and the building</span>
+    </div>
+    <div class="band rv">
+      <div class="fr"><img src="assets/hub/hub-branded-1.jpg" alt="Hub branded equipment" loading="lazy"></div>
+      <div class="fr"><img src="assets/hub/hub-branded-2.jpg" alt="Hub branded equipment" loading="lazy"></div>
+      <div class="fr"><img src="assets/hub/hub-branded-3.jpg" alt="Hub branded equipment" loading="lazy"></div>
+      <div class="fr"><img src="assets/hub/hub-branded-4.jpg" alt="Hub branded equipment" loading="lazy"></div>
+    </div>
+    <p class="body"><a href="hub.html" style="border-bottom:1px solid var(--line)">More from the hub, the launch and the community</a></p>
+  </section>
+
+  <footer>
+    <span>&copy; 2026 John Wesley Ameda</span>
+    <a href="mailto:wesley@kenyaproductindex.co.ke">wesley@kenyaproductindex.co.ke</a>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && window.Lenis){
+    var lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+    (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })();
+  }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: .1, rootMargin: '0px 0px -60px' });
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  var t = document.querySelector('.ghero .display .ln span');
+  if (t && !reduce){
+    t.style.transform = 'translateY(105%)';
+    requestAnimationFrame(function(){
+      t.style.transition = 'transform 1.1s cubic-bezier(.19,1,.22,1) .15s';
+      t.style.transform = 'translateY(0)';
+    });
+  }
+
+  /* ---------- mobile menu ---------- */
+  var mt = document.getElementById('mtoggle');
+  var mm = document.getElementById('mmenu');
+  if (mt && mm){
+    var setMenu = function(open){
+      mm.hidden = !open;
+      mt.setAttribute('aria-expanded', open ? 'true' : 'false');
+      mt.textContent = open ? 'Close' : 'Menu';
+      document.body.classList.toggle('menu-open', open);
+    };
+    mt.addEventListener('click', function(){ setMenu(mm.hidden); });
+    mm.addEventListener('click', function(e){ if (e.target.tagName === 'A') setMenu(false); });
+    addEventListener('keydown', function(e){ if (e.key === 'Escape' && !mm.hidden) setMenu(false); });
+    addEventListener('resize', function(){ if (innerWidth > 1100 && !mm.hidden) setMenu(false); });
+  }
+})();
+</script>
+</body>
+</html>

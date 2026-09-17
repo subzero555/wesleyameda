@@ -72,20 +72,6 @@ img,video{display:block;max-width:100%}
 #pre .bar i{display:block;height:100%;width:0;background:var(--paper)}
 
 /* ---------- nav ---------- */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:500;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1.6rem var(--gut);mix-blend-mode:difference;color:#fff;
-}
-nav .sig{font-weight:600;font-size:1.02rem;letter-spacing:-.02em}
-nav .sig i{font-style:normal;font-weight:400;color:#9c9c9c}
-nav ul{display:flex;gap:2.2rem;list-style:none}
-nav a{font-size:.92rem;font-weight:450;position:relative;padding-bottom:2px}
-nav a::after{
-  content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;
-  transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease);
-}
-nav a:hover::after{transform:scaleX(1);transform-origin:left}
 
 /* ---------- hero ---------- */
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:2.2rem;position:relative}
@@ -141,6 +127,8 @@ nav a:hover::after{transform:scaleX(1);transform-origin:left}
   transform:translate(-50%,-50%) scale(.82);
   transition:opacity .45s var(--ease),transform .45s var(--ease);
 }
+#peek.tall{width:190px;height:330px}
+#peek.tall img{object-position:top center}
 #peek.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
 #peek img{width:100%;height:100%;object-fit:cover;object-position:top left}
 
@@ -148,11 +136,25 @@ nav a:hover::after{transform:scaleX(1);transform-origin:left}
 .teach{background:var(--ink);color:var(--paper);padding:clamp(6rem,13vw,12rem) 0;margin-top:2rem}
 .teach .h2{max-width:16ch}
 .teach .body{color:rgba(239,237,232,.66);margin-top:2rem}
-.teach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(239,237,232,.18);margin-top:5rem;border-top:1px solid rgba(239,237,232,.18);border-bottom:1px solid rgba(239,237,232,.18)}
+.teach-shots{display:flex;gap:.9rem;overflow-x:auto;scrollbar-width:none;padding:.25rem 0 .9rem;margin-top:3.2rem;cursor:grab}
+.teach-shots::-webkit-scrollbar{display:none}
+.teach-shots.drag{cursor:grabbing}
+.teach-shots img{flex:0 0 clamp(190px,26vw,320px);aspect-ratio:4/3;object-fit:cover;background:#22242a;user-select:none;-webkit-user-drag:none}
+.teach-cap{font-size:.82rem;color:rgba(239,237,232,.5);margin-top:.1rem}
+.teach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(239,237,232,.18);margin-top:4rem;border-top:1px solid rgba(239,237,232,.18);border-bottom:1px solid rgba(239,237,232,.18)}
 .tc{background:var(--ink);padding:2.4rem 2rem 2.6rem}
 .tc h4{font-size:1.16rem;font-weight:500;letter-spacing:-.02em;margin-bottom:.9rem}
 .tc p{font-size:.92rem;line-height:1.66;color:rgba(239,237,232,.6);font-weight:350}
 .tc .fig{font-size:2.7rem;font-weight:300;letter-spacing:-.04em;margin-bottom:1.4rem;color:var(--blue);font-variant-numeric:tabular-nums}
+.bf4{margin-top:clamp(4rem,9vw,7rem);padding-top:2.4rem;border-top:1px solid rgba(239,237,232,.18);display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(2rem,6vw,5rem);align-items:start}
+.bf4 h3{font-size:clamp(1.5rem,3vw,2.3rem);font-weight:500;letter-spacing:-.03em;line-height:1.08}
+.bf4 h3 span{display:block;color:var(--blue)}
+.bf4 .body{margin-top:0}
+.bf4 .body + .body{margin-top:1.1rem}
+.paths{list-style:none;margin-top:2rem;border-top:1px solid rgba(239,237,232,.18)}
+.paths li{display:grid;grid-template-columns:1fr auto;gap:1rem;padding:.8rem 0;border-bottom:1px solid rgba(239,237,232,.18);font-size:.95rem;align-items:baseline}
+.paths li b{font-weight:450}
+.paths li i{font-style:normal;font-size:.82rem;color:rgba(239,237,232,.5);white-space:nowrap}
 
 /* ---------- gallery ---------- */
 .gal{padding:clamp(6rem,12vw,11rem) 0}
@@ -167,7 +169,13 @@ nav a:hover::after{transform:scaleX(1);transform-origin:left}
 /* ---------- about ---------- */
 .about{padding:clamp(5rem,11vw,10rem) 0;display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,6vw,6rem);align-items:center}
 .about-fr{aspect-ratio:4/5;overflow:hidden}
-.about-fr img{width:100%;height:100%;object-fit:cover;object-position:center 8%}
+.about-fr img{width:100%;height:100%;object-fit:cover;object-position:center 25%}
+.turkana{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;margin-top:2.2rem}
+.turkana figure{margin:0}
+.turkana .fr{aspect-ratio:4/3;overflow:hidden;background:#ddd9d2}
+.turkana img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.turkana figure:hover img{transform:scale(1.04)}
+.turkana p{margin-top:.55rem;font-size:.78rem;line-height:1.4;color:var(--ash)}
 .about dl{margin-top:2.6rem;border-top:1px solid var(--line)}
 .about dl div{display:grid;grid-template-columns:1fr 2fr;gap:1.5rem;padding:.95rem 0;border-bottom:1px solid var(--line)}
 .about dt{font-size:.84rem;color:var(--ash);font-weight:450}
@@ -195,12 +203,12 @@ footer{display:flex;justify-content:space-between;padding:4rem 0 2rem;font-size:
   .statement .cols{grid-template-columns:1fr;gap:1.6rem}
   .statement .cols .body:first-child{grid-column:1}
   .teach-grid{grid-template-columns:1fr}
+  .bf4{grid-template-columns:1fr;gap:1.6rem}
   .about{grid-template-columns:1fr;gap:2.5rem}
   .about-fr{aspect-ratio:4/3}
+  .turkana{grid-template-columns:1fr 1fr}
   .contact-rows{grid-template-columns:1fr 1fr}
   .hero-portrait{display:none}
-  nav ul{gap:1.3rem}
-  nav a{font-size:.84rem}
   #peek{display:none}
 }
 @media(max-width:620px){
@@ -208,13 +216,55 @@ footer{display:flex;justify-content:space-between;padding:4rem 0 2rem;font-size:
   .row .rr{text-align:left;justify-content:flex-start;gap:1.4rem}
   .hero-foot{flex-direction:column;align-items:flex-start}
   .hero-foot .where{text-align:left}
-  nav ul li:nth-child(2){display:none}
   .about dl div{grid-template-columns:1fr;gap:.2rem}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}
   .rv{opacity:1;transform:none}
   #peek{display:none}
+}
+
+/* ---------- nav, shared ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:600;display:flex;align-items:center;justify-content:space-between;padding:1.6rem var(--gut);mix-blend-mode:difference;color:#fff}
+nav .sig{font-weight:600;font-size:1.02rem;letter-spacing:-.02em}
+nav .sig i{font-style:normal;font-weight:400;color:#9c9c9c}
+nav ul.navlinks{display:flex;gap:1.6rem;list-style:none}
+nav ul.navlinks a{font-size:.9rem;font-weight:450;position:relative;padding-bottom:2px;white-space:nowrap}
+nav ul.navlinks a::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+nav ul.navlinks a:hover::after{transform:scaleX(1);transform-origin:left}
+nav #mtoggle{display:none;background:none;border:0;color:inherit;font:inherit;font-size:.92rem;font-weight:450;cursor:pointer;padding:.4rem 0;letter-spacing:-.01em}
+
+#mmenu{position:fixed;inset:0;z-index:590;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:6rem var(--gut) 2rem;overflow-y:auto}
+#mmenu[hidden]{display:none}
+#mmenu ul{list-style:none}
+#mmenu li{overflow:hidden}
+#mmenu a{display:block;font-size:clamp(2rem,10vw,3.2rem);font-weight:500;letter-spacing:-.035em;line-height:1.16;padding:.12em 0}
+#mmenu .mfoot{margin-top:2.5rem;padding-top:1.4rem;border-top:1px solid rgba(239,237,232,.18);display:flex;flex-direction:column;gap:.5rem}
+#mmenu .mfoot a{font-size:.95rem;font-weight:400;color:rgba(239,237,232,.7);letter-spacing:0}
+body.menu-open{overflow:hidden}
+
+@media(max-width:1100px){
+  nav ul.navlinks{display:none}
+  nav #mtoggle{display:block}
+}
+
+/* ---------- phone ---------- */
+@media(max-width:620px){
+  :root{--gut:1.15rem}
+  body{font-size:15px}
+  .display{letter-spacing:-.035em}
+  .h2{letter-spacing:-.028em}
+  .body{max-width:none}
+  .sec{padding:2.4rem 0}
+  .sec-head{flex-direction:column;align-items:flex-start;gap:.2rem}
+  .grid,.plates,.band{gap:.7rem}
+  .strip img,.shots img,.screens img,.teach-shots img{flex-basis:78vw}
+  .shots img{flex-basis:56vw}
+  footer{flex-direction:column;gap:.5rem}
+  a[href^="mailto:"],a[href^="tel:"]{word-break:break-word}
+}
+@media(max-width:620px) and (pointer:coarse){
+  nav ul.navlinks a,#mmenu a,.item,.row{-webkit-tap-highlight-color:transparent}
 }
 </style>
 </head>
@@ -227,13 +277,36 @@ footer{display:flex;justify-content:space-between;padding:4rem 0 2rem;font-size:
 </div>
 
 <nav>
-  <a href="/" class="sig">Wesley Ameda <i>, Bondo</i></a>
-  <ul>
-    <li><a href="work/index.html">Work</a></li>
-    <li><a href="#teaching">Teaching</a></li>
-    <li><a href="#contact">Contact</a></li>
+  <a href="index.html" class="sig">Wesley Ameda</a>
+  <button id="mtoggle" aria-expanded="false" aria-controls="mmenu">Menu</button>
+  <ul class="navlinks">
+      <li><a href="work/index.html">Work</a></li>
+      <li><a href="hub.html">The hub</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="design.html">Design</a></li>
+      <li><a href="marketing.html">Marketing</a></li>
+      <li><a href="hobbies.html">Hobbies</a></li>
+      <li><a href="access.html">Access</a></li>
+      <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
+
+<div id="mmenu" hidden>
+  <ul>
+    <li><a href="work/index.html">Work</a></li>
+    <li><a href="hub.html">The hub</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="design.html">Design</a></li>
+    <li><a href="marketing.html">Marketing</a></li>
+    <li><a href="hobbies.html">Hobbies</a></li>
+    <li><a href="access.html">Access</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="mfoot">
+    <a href="mailto:wesley@kenyaproductindex.co.ke">wesley@kenyaproductindex.co.ke</a>
+    <a href="tel:+254793518514">0793 518 514</a>
+  </div>
+</div>
 
 <main class="shell">
 
@@ -270,12 +343,12 @@ footer{display:flex;justify-content:space-between;padding:4rem 0 2rem;font-size:
       <a class="meta all" href="work/index.html">All work</a>
     </div>
 
-    <a class="row" href="work/eduledger.html" data-peek="assets/work-eduledger.jpg">
+    <a class="row" href="work/eduledger.html" data-peek="assets/screens/eduledger-1.jpg">
       <span class="rt">EduLedger</span>
       <span class="rr"><span>School finance</span><span class="live">Live</span></span>
     </a>
 
-    <a class="row" href="work/kenya-product-index.html" data-peek="assets/work-kenya-product-index.jpg">
+    <a class="row" href="work/kenya-product-index.html" data-peek="assets/screens/kpi-1.jpg">
       <span class="rt">Kenya Product Index</span>
       <span class="rr"><span>Consumer intelligence</span><span class="live">Live</span></span>
     </a>
@@ -290,17 +363,17 @@ footer{display:flex;justify-content:space-between;padding:4rem 0 2rem;font-size:
       <span class="rr"><span>Neighbourhood marketplace</span><span class="live">Deployed</span></span>
     </a>
 
-    <a class="row" href="work/squishy.html">
+    <a class="row" href="work/squishy.html" data-peek="assets/shots/squishy-2.jpg" data-peek-tall="1">
       <span class="rt">Squishy</span>
       <span class="rr"><span>WiFi instrumentation</span><span>Phase zero</span></span>
     </a>
 
-    <a class="row" href="work/shambadoc.html">
+    <a class="row" href="work/shambadoc.html" data-peek="assets/shots/shambadoc-1.jpg" data-peek-tall="1">
       <span class="rt">ShambaDoc</span>
       <span class="rr"><span>Crop disease diagnosis</span><span>Challenge build</span></span>
     </a>
 
-    <a class="row" href="work/cover-connect.html">
+    <a class="row" href="work/cover-connect.html" data-peek="assets/shots/cover-connect-1.jpg" data-peek-tall="1">
       <span class="rt">Cover Connect</span>
       <span class="rr"><span>Insurance onboarding</span><span>Prototype</span></span>
     </a>
@@ -314,6 +387,19 @@ footer{display:flex;justify-content:space-between;padding:4rem 0 2rem;font-size:
     <h2 class="h2 rv">Teaching is not a side project. It is half the practice.</h2>
     <p class="body rv">I write the curriculum, produce the material and stand in the room. The approach is the same every time: show what is happening underneath before handing anyone a shortcut, and use examples people already recognise. M-Pesa transactions and school fees teach a loop better than foo and bar ever will.</p>
     <p class="body rv">The subjects run wider than code. Digital marketing and social media management, Facebook especially, where most small businesses here are already trying to sell and mostly guessing. Design and production in Blender, Canva and DaVinci Resolve. And how to actually work with AI tools, Claude and Claude Code in particular, which is the fastest moving thing in this list and the one with the most confident nonsense written about it.</p>
+    <div class="teach-shots rv">
+      <img src="assets/hub/bf4-teaching-2.jpg" alt="Teaching a Beyond Form 4 class" loading="lazy" draggable="false">
+      <img src="assets/hub/bf4-teaching-3.jpg" alt="Teaching a Beyond Form 4 class" loading="lazy" draggable="false">
+      <img src="assets/hub/bf4-teaching-4.jpg" alt="Teaching a Beyond Form 4 class" loading="lazy" draggable="false">
+      <img src="assets/community-training.jpg" alt="Digital skills training session" loading="lazy" draggable="false">
+      <img src="assets/hub/presidential-explaining-bf4-1.jpg" alt="Presenting the programme" loading="lazy" draggable="false">
+      <img src="assets/hub/junior-pioneers-1.jpg" alt="Junior Tech Pioneers session" loading="lazy" draggable="false">
+      <img src="assets/hub/junior-pioneers-2.jpg" alt="Junior Tech Pioneers session" loading="lazy" draggable="false">
+      <img src="assets/hub/junior-pioneers-3.jpg" alt="Junior Tech Pioneers session" loading="lazy" draggable="false">
+      <img src="assets/hub/bf4-mazingira-1.jpg" alt="A cohort out on Mazingira Day" loading="lazy" draggable="false">
+    </div>
+    <p class="teach-cap">In the room: Beyond Form 4, digital skills training and Junior Tech Pioneers</p>
+
     <div class="teach-grid">
       <div class="tc rv">
         <div class="fig">1,576</div>
@@ -331,13 +417,29 @@ footer{display:flex;justify-content:space-between;padding:4rem 0 2rem;font-size:
         <p>Four levels each school holiday, from Scratch to advanced web. Every level ends with a demo day in front of guardians.</p>
       </div>
     </div>
+
+    <div class="bf4">
+      <h3 class="rv">Beyond Form 4 <span>is the main programme</span></h3>
+      <div class="rv">
+        <p class="body">It is for the people who have just sat their final school exams and are waiting, which in this part of the country can mean a year of waiting. Anyone past Form 4 can take it. Nobody needs to arrive knowing anything.</p>
+        <p class="body">Everyone does the same five courses first: computer fundamentals, ICT and society, internet and web technologies, productivity tools, and digital marketing. That is the floor. Then each learner picks one of five specialisations and goes deep enough in it to be employable rather than merely familiar.</p>
+        <ul class="paths">
+          <li><b>Web Development</b><i>12 topics, 11 skills, around 40 hours</i></li>
+          <li><b>Graphic Design</b><i>16 topics, 14 skills, around 40 hours</i></li>
+          <li><b>Data Analysis</b><i>12 topics, 13 skills, around 40 hours</i></li>
+          <li><b>Cyber Security</b><i>13 topics, 12 skills, around 40 hours</i></li>
+          <li><b>Videography</b><i>13 topics, 11 skills, around 30 hours</i></li>
+        </ul>
+        <p class="body">The programme is run inside EduLedger, which is the other half of this site. The curriculum, the specialisation tagging, the attendance, the assessments and the certificates at the end are all the software further up this page. I teach on the thing I built, which is the fastest way I know to find out what is wrong with it.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- GALLERY -->
 <section class="gal">
   <div class="shell">
-    <h2 class="h3 rv" style="margin-bottom:2.5rem">In the room</h2>
+    <div class="work-head" style="margin-bottom:2.5rem"><h2 class="h3">In the room</h2><a class="meta all" href="gallery.html">Full gallery</a></div>
   </div>
   <div class="shell">
     <div class="gal-track" id="gal">
@@ -345,6 +447,8 @@ footer{display:flex;justify-content:space-between;padding:4rem 0 2rem;font-size:
       <figure class="gal-item"><div class="fr"><img src="assets/community-training.jpg" alt="Training session" loading="lazy"></div><p>Digital skills training, Siaya Community Digital Hub</p></figure>
       <figure class="gal-item"><div class="fr"><img src="assets/community-hackathon.jpg" alt="Hackathon" loading="lazy"></div><p>Siaya Digital Summit hackathon</p></figure>
       <figure class="gal-item"><div class="fr"><img src="assets/community-jitume.jpg" alt="Jitume facilitation" loading="lazy"></div><p>Jitume facilitation for ICT Authority Kenya</p></figure>
+      <figure class="gal-item"><div class="fr"><img src="assets/community-icta-visit.jpg" alt="With an ICT Authority official" loading="lazy"></div><p>With an ICT Authority official</p></figure>
+      <figure class="gal-item"><div class="fr"><img src="assets/community-hackathon-konza.jpg" alt="Hackathon at the hub" loading="lazy"></div><p>Hackathon at the hub, with colleagues from the hub and Konza Technopolis</p></figure>
       <figure class="gal-item"><div class="fr"><img src="assets/summit-1.jpg" alt="Summit crowd" loading="lazy"></div><p>Presidential hub summit, Siaya</p></figure>
       <figure class="gal-item"><div class="fr"><img src="assets/community-mazingira.jpg" alt="Mazingira Day" loading="lazy"></div><p>Mazingira Day</p></figure>
     </div>
@@ -354,16 +458,21 @@ footer{display:flex;justify-content:space-between;padding:4rem 0 2rem;font-size:
 <!-- ABOUT -->
 <div class="shell">
   <section class="about" id="about">
-    <div class="about-fr rv"><img src="assets/portrait-hub.jpg" alt="Wesley Ameda at the hub" loading="lazy"></div>
+    <div class="about-fr rv"><img src="assets/hub/hub-desk-me-1.jpg" alt="At the hub" loading="lazy"></div>
     <div>
       <h2 class="h2 rv">I started in Turkana, fixing things that had to work without ideal conditions.</h2>
       <p class="body rv" style="margin-top:1.8rem">My first job in tech was as an ICT field officer in Lodwar. Turkana teaches you quickly that a system is only as good as the power, the connection and the person in front of it. I have built everything since with that in mind, which is why the work tends to include the parts nobody credits: the server in the corner, the DNS filtering, the tunnel that gets a machine past CGNAT.</p>
+      <div class="turkana rv">
+        <figure><div class="fr"><img src="assets/turkana-1.jpg" alt="At Lake Turkana" loading="lazy"></div><p>Lake Turkana</p></figure>
+        <figure><div class="fr"><img src="assets/turkana-2.jpg" alt="Fieldwork in Kalokol" loading="lazy"></div><p>Kalokol, collecting data on vulnerable households</p></figure>
+        <figure><div class="fr"><img src="assets/turkana-3.jpg" alt="In Lodwar with colleagues" loading="lazy"></div><p>Lodwar, with colleagues from the field team</p></figure>
+      </div>
       <dl class="rv">
         <div><dt>Now</dt><dd>Head of training and lead developer, Siaya Community Digital Hub</dd></div>
         <div><dt>Companies</dt><dd>Bitroot, software. Njia, production and training.</dd></div>
         <div><dt>Build with</dt><dd>Next.js, Node, Express, NestJS, PostgreSQL, Prisma, Tailwind, Kotlin, Flutter, Linux, PM2</dd></div>
         <div><dt>Infrastructure</dt><dd>M-Pesa integrations, nginx, Cloudflare Tunnel, network and server setup</dd></div>
-        <div><dt>Design and production</dt><dd>Blender, DaVinci Resolve, Canva</dd></div>
+        <div><dt>Design and production</dt><dd>Blender, DaVinci Resolve, Premiere Pro, Photoshop, Illustrator, InDesign, Canva</dd></div>
         <div><dt>Marketing</dt><dd>Digital marketing and social media management, Facebook in particular</dd></div>
         <div><dt>AI</dt><dd>Working with Claude and Claude Code as part of the daily build</dd></div>
         <div><dt>Teach</dt><dd>All of the above, to beginners and to people already working</dd></div>
@@ -505,6 +614,7 @@ footer{display:flex;justify-content:space-between;padding:4rem 0 2rem;font-size:
   document.querySelectorAll('.row[data-peek]').forEach(function(row){
     row.addEventListener('mouseenter', function(){
       peekImg.src = row.dataset.peek;
+      peek.classList.toggle('tall', row.dataset.peekTall === '1');
       peek.classList.add('on');
       active = true;
     });
@@ -534,6 +644,29 @@ footer{display:flex;justify-content:space-between;padding:4rem 0 2rem;font-size:
     e.preventDefault();
     gal.scrollLeft = startL - (e.clientX - startX);
   });
+
+  document.querySelectorAll('.teach-shots').forEach(function(s){
+    var down=false,sx=0,sl=0;
+    s.addEventListener('pointerdown',function(e){down=true;sx=e.clientX;sl=s.scrollLeft;s.classList.add('drag');});
+    addEventListener('pointerup',function(){down=false;s.classList.remove('drag');});
+    s.addEventListener('pointermove',function(e){if(!down)return;e.preventDefault();s.scrollLeft=sl-(e.clientX-sx);});
+  });
+
+  /* ---------- mobile menu ---------- */
+  var mt = document.getElementById('mtoggle');
+  var mm = document.getElementById('mmenu');
+  if (mt && mm){
+    var setMenu = function(open){
+      mm.hidden = !open;
+      mt.setAttribute('aria-expanded', open ? 'true' : 'false');
+      mt.textContent = open ? 'Close' : 'Menu';
+      document.body.classList.toggle('menu-open', open);
+    };
+    mt.addEventListener('click', function(){ setMenu(mm.hidden); });
+    mm.addEventListener('click', function(e){ if (e.target.tagName === 'A') setMenu(false); });
+    addEventListener('keydown', function(e){ if (e.key === 'Escape' && !mm.hidden) setMenu(false); });
+    addEventListener('resize', function(){ if (innerWidth > 1100 && !mm.hidden) setMenu(false); });
+  }
 })();
 </script>
 </body>

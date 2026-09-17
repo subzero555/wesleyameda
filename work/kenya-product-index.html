@@ -40,11 +40,6 @@ img{display:block;max-width:100%}
 .body{font-size:clamp(.98rem,1.2vw,1.12rem);line-height:1.68;color:#3a3b3f}
 .body + .body{margin-top:1.2rem}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;padding:1.6rem var(--gut);mix-blend-mode:difference;color:#fff}
-nav .sig{font-weight:600;font-size:1.02rem;letter-spacing:-.02em}
-nav a.back{font-size:.92rem;position:relative;padding-bottom:2px}
-nav a.back::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(1);transform-origin:left;transition:transform .5s var(--ease)}
-nav a.back:hover::after{transform:scaleX(0);transform-origin:right}
 
 /* hero */
 .chero{padding:32vh 0 3rem}
@@ -93,6 +88,19 @@ ul.plain li::before{content:'';width:5px;height:5px;background:var(--blue);borde
 .next a:hover{color:var(--blue)}
 footer{display:flex;justify-content:space-between;padding:2rem 0;font-size:.8rem;color:var(--ash);border-top:1px solid var(--line);flex-wrap:wrap;gap:1rem}
 
+/* phone screenshots */
+.shots{display:flex;gap:.9rem;overflow-x:auto;scrollbar-width:none;padding:.25rem 0 1rem;margin-top:2.2rem;cursor:grab}
+.shots::-webkit-scrollbar{display:none}
+.shots.drag{cursor:grabbing}
+.shots img{flex:0 0 clamp(140px,20vw,215px);aspect-ratio:1080/2400;object-fit:cover;background:#ddd9d2;border:1px solid var(--line);user-select:none;-webkit-user-drag:none}
+.shots-cap{font-size:.84rem;color:var(--ash);margin-top:.2rem}
+
+/* desktop screenshots */
+.screens{display:flex;gap:1rem;overflow-x:auto;scrollbar-width:none;padding:.25rem 0 1rem;margin-top:2.2rem;cursor:grab}
+.screens::-webkit-scrollbar{display:none}
+.screens.drag{cursor:grabbing}
+.screens img{flex:0 0 clamp(290px,44vw,620px);aspect-ratio:16/10;object-fit:cover;object-position:top left;background:#ddd9d2;border:1px solid var(--line);user-select:none;-webkit-user-drag:none}
+
 .rv{opacity:0;transform:translateY(30px)}
 .rv.on{opacity:1;transform:none;transition:opacity 1s var(--ease),transform 1s var(--ease)}
 
@@ -108,14 +116,84 @@ footer{display:flex;justify-content:space-between;padding:2rem 0;font-size:.8rem
   *{transition-duration:.01ms!important}
   .rv{opacity:1;transform:none}
 }
+
+/* ---------- nav, shared ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:600;display:flex;align-items:center;justify-content:space-between;padding:1.6rem var(--gut);mix-blend-mode:difference;color:#fff}
+nav .sig{font-weight:600;font-size:1.02rem;letter-spacing:-.02em}
+nav .sig i{font-style:normal;font-weight:400;color:#9c9c9c}
+nav ul.navlinks{display:flex;gap:1.6rem;list-style:none}
+nav ul.navlinks a{font-size:.9rem;font-weight:450;position:relative;padding-bottom:2px;white-space:nowrap}
+nav ul.navlinks a::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+nav ul.navlinks a:hover::after{transform:scaleX(1);transform-origin:left}
+nav #mtoggle{display:none;background:none;border:0;color:inherit;font:inherit;font-size:.92rem;font-weight:450;cursor:pointer;padding:.4rem 0;letter-spacing:-.01em}
+
+#mmenu{position:fixed;inset:0;z-index:590;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:6rem var(--gut) 2rem;overflow-y:auto}
+#mmenu[hidden]{display:none}
+#mmenu ul{list-style:none}
+#mmenu li{overflow:hidden}
+#mmenu a{display:block;font-size:clamp(2rem,10vw,3.2rem);font-weight:500;letter-spacing:-.035em;line-height:1.16;padding:.12em 0}
+#mmenu .mfoot{margin-top:2.5rem;padding-top:1.4rem;border-top:1px solid rgba(239,237,232,.18);display:flex;flex-direction:column;gap:.5rem}
+#mmenu .mfoot a{font-size:.95rem;font-weight:400;color:rgba(239,237,232,.7);letter-spacing:0}
+body.menu-open{overflow:hidden}
+
+@media(max-width:1100px){
+  nav ul.navlinks{display:none}
+  nav #mtoggle{display:block}
+}
+
+/* ---------- phone ---------- */
+@media(max-width:620px){
+  :root{--gut:1.15rem}
+  body{font-size:15px}
+  .display{letter-spacing:-.035em}
+  .h2{letter-spacing:-.028em}
+  .body{max-width:none}
+  .sec{padding:2.4rem 0}
+  .sec-head{flex-direction:column;align-items:flex-start;gap:.2rem}
+  .grid,.plates,.band{gap:.7rem}
+  .strip img,.shots img,.screens img,.teach-shots img{flex-basis:78vw}
+  .shots img{flex-basis:56vw}
+  footer{flex-direction:column;gap:.5rem}
+  a[href^="mailto:"],a[href^="tel:"]{word-break:break-word}
+}
+@media(max-width:620px) and (pointer:coarse){
+  nav ul.navlinks a,#mmenu a,.item,.row{-webkit-tap-highlight-color:transparent}
+}
 </style>
 </head>
 <body>
 
 <nav>
   <a href="../index.html" class="sig">Wesley Ameda</a>
-  <a href="index.html" class="back">All work</a>
+  <button id="mtoggle" aria-expanded="false" aria-controls="mmenu">Menu</button>
+  <ul class="navlinks">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="../hub.html">The hub</a></li>
+      <li><a href="../gallery.html">Gallery</a></li>
+      <li><a href="../design.html">Design</a></li>
+      <li><a href="../marketing.html">Marketing</a></li>
+      <li><a href="../hobbies.html">Hobbies</a></li>
+      <li><a href="../access.html">Access</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
 </nav>
+
+<div id="mmenu" hidden>
+  <ul>
+    <li><a href="index.html">Work</a></li>
+    <li><a href="../hub.html">The hub</a></li>
+    <li><a href="../gallery.html">Gallery</a></li>
+    <li><a href="../design.html">Design</a></li>
+    <li><a href="../marketing.html">Marketing</a></li>
+    <li><a href="../hobbies.html">Hobbies</a></li>
+    <li><a href="../access.html">Access</a></li>
+    <li><a href="../index.html#contact">Contact</a></li>
+  </ul>
+  <div class="mfoot">
+    <a href="mailto:wesley@kenyaproductindex.co.ke">wesley@kenyaproductindex.co.ke</a>
+    <a href="tel:+254793518514">0793 518 514</a>
+  </div>
+</div>
 
 <div class="shell">
   <header class="chero">
@@ -135,7 +213,7 @@ footer{display:flex;justify-content:space-between;padding:2rem 0;font-size:.8rem
 </div>
 
 <figure class="plate tall rv">
-  <img src="../assets/work-kenya-product-index.jpg" alt="Kenya Product Index rankings page">
+  <img src="../assets/screens/kpi-1.jpg" alt="Kenya Product Index rankings page">
 </figure>
 
 <div class="shell">
@@ -194,6 +272,37 @@ footer{display:flex;justify-content:space-between;padding:2rem 0;font-size:.8rem
         <p class="body">The part worth pointing at is what it does when a brand has no ratings. It says so. It shows no number, and the API returns null rather than zero, so nobody drawing the badge themselves can render an unrated brand as a bottom score either. A badge sits on the one page a brand fully controls, which makes it the one place an invented number would look most official and be questioned least. The setup panel also states plainly that the badge keeps showing the score when it falls, and that there is no setting to freeze it.</p>
       </div>
     </div>
+  </section>
+
+  <section class="sec rv" style="padding-top:0">
+    <div class="screens">
+      <img src="../assets/screens/kpi-2.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-3.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-4.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-5.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-6.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-7.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-8.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-9.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-10.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-11.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-12.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-13.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-14.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-15.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-16.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-17.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-18.jpg" alt="" loading="lazy" draggable="false">
+      <img src="../assets/screens/kpi-19.jpg" alt="" loading="lazy" draggable="false">
+    </div>
+    <p class="shots-cap">Rankings, brand pages, polls and the admin behind them</p>
+  </section>
+
+  <section class="sec rv" style="padding-top:0">
+    <div class="shots">
+      <img src="../assets/shots/kpi-1.jpg" alt="" loading="lazy" draggable="false">
+    </div>
+    <p class="shots-cap">Kenya Product Index on a phone</p>
   </section>
 
   <section class="sec">
@@ -263,6 +372,30 @@ footer{display:flex;justify-content:space-between;padding:2rem 0;font-size:.8rem
         l.style.transform = 'translateY(0)';
       });
     });
+  }
+
+  var strips = document.querySelectorAll('.shots, .screens');
+  strips.forEach(function(s){
+    var down=false,sx=0,sl=0;
+    s.addEventListener('pointerdown',function(e){down=true;sx=e.clientX;sl=s.scrollLeft;s.classList.add('drag');});
+    addEventListener('pointerup',function(){down=false;s.classList.remove('drag');});
+    s.addEventListener('pointermove',function(e){if(!down)return;e.preventDefault();s.scrollLeft=sl-(e.clientX-sx);});
+  });
+
+  /* ---------- mobile menu ---------- */
+  var mt = document.getElementById('mtoggle');
+  var mm = document.getElementById('mmenu');
+  if (mt && mm){
+    var setMenu = function(open){
+      mm.hidden = !open;
+      mt.setAttribute('aria-expanded', open ? 'true' : 'false');
+      mt.textContent = open ? 'Close' : 'Menu';
+      document.body.classList.toggle('menu-open', open);
+    };
+    mt.addEventListener('click', function(){ setMenu(mm.hidden); });
+    mm.addEventListener('click', function(e){ if (e.target.tagName === 'A') setMenu(false); });
+    addEventListener('keydown', function(e){ if (e.key === 'Escape' && !mm.hidden) setMenu(false); });
+    addEventListener('resize', function(){ if (innerWidth > 1100 && !mm.hidden) setMenu(false); });
   }
 })();
 </script>
