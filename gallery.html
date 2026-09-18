@@ -219,7 +219,11 @@ body.menu-open{overflow:hidden}
 
 @media(max-width:1100px){
   nav ul.navlinks{display:none}
-  
+  nav #mtoggle{display:block}
+  /* nav always visible on phones: the Menu button is the only way in, so it
+     never floats unreadable over a photograph */
+  nav{background:rgba(239,237,232,.92);border-bottom-color:var(--line)}
+  nav #mtoggle{font-weight:500}
 }
 @media(prefers-reduced-motion:reduce){
   nav,.panel,.navtop,.navtop i,.navcta{transition:none}
