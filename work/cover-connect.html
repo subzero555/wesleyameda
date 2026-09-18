@@ -117,8 +117,9 @@ nav{
   display:flex;align-items:center;justify-content:space-between;
   padding:1.5rem var(--gut);color:var(--ink);
   background:transparent;border-bottom:1px solid transparent;
-  transition:background .45s var(--ease),border-color .45s var(--ease),padding .45s var(--ease);
+  transition:background .45s var(--ease),border-color .45s var(--ease),transform .38s var(--ease);
 }
+nav.hide{transform:translateY(-101%)}
 nav.solid{
   background:rgba(239,237,232,.86);
   -webkit-backdrop-filter:saturate(1.5) blur(16px);
@@ -668,6 +669,23 @@ body.menu-open{overflow:hidden}
 
   function later(){ clearTimeout(closeT); closeT = setTimeout(shut, 160); }
 
+  /* the bar is opaque on a phone, so anything scrolling under it is sliced
+     mid line. retreat while reading downward, return on the way back up. */
+  (function navHide(){
+    if (!navEl) return;
+    var prev = scrollY, ticking = false;
+    function upd(){
+      var y = scrollY, down = y > prev + 2, up = y < prev - 2;
+      if (innerWidth <= 1100 && y > 220 && openId === null){
+        if (down) navEl.classList.add('hide');
+        else if (up) navEl.classList.remove('hide');
+      } else {
+        navEl.classList.remove('hide');
+      }
+      prev = y; ticking = false;
+    }
+    addEventListener('scroll', function(){ if (!ticking){ ticking = true; requestAnimationFrame(upd); } }, { passive:true });
+  })();
   items.forEach(function(item){
     var id = item.dataset.menu;
     item.addEventListener('mouseenter', function(){ show(id); });
