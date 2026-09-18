@@ -172,13 +172,19 @@ img,video{display:block;max-width:100%}
    mask uses the same image, width and baseline as the figure. */
 .hero-name.under{z-index:1;color:var(--ink)}
 .hero-name.over{
+  /* the whole hero, so the mask is placed with the same numbers as the figure */
+  top:0;bottom:0;height:auto;
+  display:flex;align-items:flex-end;justify-content:center;
+  padding-bottom:var(--lift,0px);
   z-index:3;color:var(--paper);pointer-events:none;
   -webkit-mask-image:url(assets/portrait-cut.png);
           mask-image:url(assets/portrait-cut.png);
-  -webkit-mask-repeat:no-repeat;         mask-repeat:no-repeat;
-  -webkit-mask-position:center bottom;   mask-position:center bottom;
-  -webkit-mask-size:var(--pw) auto;      mask-size:var(--pw) auto;
+  -webkit-mask-repeat:no-repeat;                        mask-repeat:no-repeat;
+  -webkit-mask-size:var(--pw) auto;                     mask-size:var(--pw) auto;
+  -webkit-mask-position:center calc(100% - var(--lift,0px));
+          mask-position:center calc(100% - var(--lift,0px));
 }
+.hero-name.over .ln{width:100%}
 .hero-name .ln{overflow:hidden;display:block}
 .hero-name .lift{display:block;will-change:transform}
 .hero-name .track{display:flex;flex-wrap:nowrap;align-items:center;width:max-content;will-change:transform}
@@ -1310,6 +1316,7 @@ body.menu-open{overflow:hidden}
   var placeEl = document.querySelector('.hero-place');
   var roleEl  = document.querySelector('.hero-role');
   var cueEl   = document.querySelector('.hero-cue');
+  var overEl  = document.querySelector('.hero-name.over');
 
   if (!reduce && (hp || placeEl || roleEl)){
     var pTick = false;
@@ -1320,6 +1327,15 @@ body.menu-open{overflow:hidden}
         if (placeEl) placeEl.style.transform = 'translateY(' + (-y * 0.42) + 'px)';
         if (roleEl)  roleEl.style.transform  = 'translateY(' + (-y * 0.34) + 'px)';
         if (cueEl)   cueEl.style.opacity     = String(Math.max(0, 1 - y / 260));
+        // the figure is displaced by transform, but its mask is not. without
+        // moving the mask by the same amount the paper copy of the name keeps
+        // showing in the gap the parallax opens beneath him.
+        if (overEl){
+          var lift = getComputedStyle(overEl).paddingBottom || '0px';
+          var mp = 'center calc(100% - ' + lift + ' - ' + (y * 0.06).toFixed(1) + 'px)';
+          overEl.style.webkitMaskPosition = mp;
+          overEl.style.maskPosition = mp;
+        }
       }
       pTick = false;
     }
